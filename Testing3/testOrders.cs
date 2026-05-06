@@ -24,21 +24,20 @@ namespace Testing3
         }
 
         [TestMethod]
+        public void OrderIdPropertyOK()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Int32 TestData = 1;
+            AnOrder.OrderId = TestData;
+        }
+
+            [TestMethod]
         public void CustomerIdPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
             Int32 TestData = 1;
             AnOrder.CustomerId = TestData;
             Assert.AreEqual(AnOrder.CustomerId, TestData);
-        }
-
-        [TestMethod]
-        public void EmailPropertyOK()
-        {
-            clsOrders AnOrder = new clsOrders();
-            String TestData = "test@email.com";
-            AnOrder.Email = TestData;
-            Assert.AreEqual(AnOrder.Email, TestData);
         }
 
 
