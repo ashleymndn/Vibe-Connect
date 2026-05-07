@@ -11,8 +11,9 @@ namespace Testing2
         public void InstanceOK()
         {
             clsInventory AnInventory = new clsInventory();
-            Assert.IsNotNull( AnInventory );
+            Assert.IsNotNull(AnInventory);
         }
+
         [TestMethod]
         public void ActivePropertyOK()
         {
@@ -50,8 +51,8 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void LastUpdatedPropertyOK()
-        {
+        public void LastUpdatedPropertyOK() {
+          
             clsInventory AnInventory = new clsInventory();
             DateTime TestData = DateTime.Now.Date;
             AnInventory.LastUpdated = TestData;
@@ -59,13 +60,11 @@ namespace Testing2
 
         }
         [TestMethod]
-
-        public void ProductNamePropertyOK()
-        {
-            clsInventory AnInventory = new clsInventory();
-            string TestData = "Vphone 1";
-            AnInventory.ProductName = TestData;
-            Assert.AreEqual(AnInventory.ProductName, TestData);
+        public void ProductNamePropertyOK() {
+          clsInventory AnInventory = new clsInventory();
+          string TestData = "Vphone 1";
+          AnInventory.ProductName = TestData;
+          Assert.AreEqual(AnInventory.ProductName, TestData);
         }
 
         [TestMethod]
@@ -86,5 +85,6 @@ namespace Testing2
             AnInventory.StockStatus = TestData;
             Assert.AreEqual(AnInventory.StockStatus, TestData);
         }
+
     }
 }
