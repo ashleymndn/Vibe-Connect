@@ -31,7 +31,7 @@ namespace Testing3
             AnOrder.OrderId = TestData;
         }
 
-            [TestMethod]
+        [TestMethod]
         public void CustomerIdPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
