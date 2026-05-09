@@ -103,11 +103,14 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void TestActiveFound() {
+        public void TestActiveFound()
+        {
             clsInventory AnInventory = new clsInventory();
+
             Boolean Found = false;
             Boolean OK = true;
             Int32 InventoryId = 2;
+
             Found = AnInventory.Find(InventoryId);
 
             if (AnInventory.Active != true)
@@ -116,7 +119,6 @@ namespace Testing2
             }
 
             Assert.IsTrue(OK);
-
         }
 
         [TestMethod]

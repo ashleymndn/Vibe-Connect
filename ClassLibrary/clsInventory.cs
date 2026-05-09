@@ -12,8 +12,19 @@ namespace ClassLibrary
         private Int32 mQuantityInStock;
         private string mStockStatus;
         private DateTime mLastUpdate;
-        public bool Active { get; set; }
+        private bool mActive;
 
+        public bool Active
+        {
+            get
+            {
+                return mActive;
+            }
+            set
+            {
+                mActive = value;
+            }
+        }
 
         public Int32 InventoryId {
             get
@@ -84,6 +95,8 @@ namespace ClassLibrary
             mQuantityInStock = 10;
             mLastUpdate = DateTime.Now.Date;
             mStockStatus = "In Stock";
+            mActive = true;
+
             return true;
         }
 
