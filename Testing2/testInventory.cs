@@ -52,7 +52,7 @@ namespace Testing2
 
         [TestMethod]
         public void LastUpdatedPropertyOK() {
-          
+
             clsInventory AnInventory = new clsInventory();
             DateTime TestData = DateTime.Now.Date;
             AnInventory.LastUpdated = TestData;
@@ -61,10 +61,10 @@ namespace Testing2
         }
         [TestMethod]
         public void ProductNamePropertyOK() {
-          clsInventory AnInventory = new clsInventory();
-          string TestData = "Vphone 1";
-          AnInventory.ProductName = TestData;
-          Assert.AreEqual(AnInventory.ProductName, TestData);
+            clsInventory AnInventory = new clsInventory();
+            string TestData = "Vphone 1";
+            AnInventory.ProductName = TestData;
+            Assert.AreEqual(AnInventory.ProductName, TestData);
         }
 
         [TestMethod]
@@ -86,5 +86,160 @@ namespace Testing2
             Assert.AreEqual(AnInventory.StockStatus, TestData);
         }
 
-    }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsInventory AnInventory = new clsInventory();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 InventoryId = 2;
+            Found = AnInventory.Find(InventoryId);
+            Assert.IsTrue(Found);
+
+            if (AnInventory.InventoryId != 2) {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestActiveFound()
+        {
+            clsInventory AnInventory = new clsInventory();
+
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 InventoryId = 2;
+
+            Found = AnInventory.Find(InventoryId);
+
+            if (AnInventory.Active != true)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestInventoryIdFound()
+        {
+            clsInventory AnInventory = new clsInventory();
+
+
+            Boolean Found = false;
+
+
+            Boolean OK = true;
+
+
+            Int32 InventoryId = 2;
+
+            Found = AnInventory.Find(InventoryId);
+
+
+            if (AnInventory.InventoryId != 2)
+            {
+                OK = false;
+            }
+
+
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestProductIdFound()
+        {
+            clsInventory AnInventory = new clsInventory();
+
+
+            Boolean Found = false;
+
+
+            Boolean OK = true;
+
+
+            Int32 InventoryId = 2;
+
+            Found = AnInventory.Find(InventoryId);
+
+
+            if (AnInventory.ProductId != 1)
+            {
+                OK = false;
+            }
+
+
+            Assert.IsTrue(OK);
+
+        }
+        [TestMethod]
+        public void TestProductNameFound()
+        { 
+            clsInventory AnInventory = new clsInventory();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 InventoryId = 2;
+            Found = AnInventory.Find(InventoryId);
+
+            if (AnInventory.ProductName != "Vphone 1")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestProductPriceFound()
+        {
+            clsInventory AnInventory = new clsInventory();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 InventoryId = 2;
+            Found = AnInventory.Find(InventoryId);
+            if (AnInventory.ProductPrice != 95.0m)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestQuantityInStockFound() { 
+            clsInventory AnInventory = new clsInventory();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 InventoryId = 2;
+            Found = AnInventory.Find(InventoryId);
+            if (AnInventory.QuantityInStock != 10)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestLastUpdatedFound() {
+            clsInventory AnInventory = new clsInventory();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 InventoryId = 2;
+            Found = AnInventory.Find(InventoryId);
+            if (AnInventory.LastUpdated != DateTime.Now.Date)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+         [TestMethod]
+         public void TestStockStatusFound() {
+            clsInventory AnInventory = new clsInventory();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 InventoryId = 2;
+            Found = AnInventory.Find(InventoryId);
+            if (AnInventory.StockStatus != "In Stock")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+    }   
 }
