@@ -76,4 +76,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
 
 
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsInventory AnInventory = new clsInventory();
+        Int32 InventoryId;
+        Boolean Found = false;
+
+        InventoryId= Convert.ToInt32(InventoryIdTextBox.Text);
+        Found= AnInventory.Find(InventoryId);
+        if (Found == true)
+        {
+            ProductIdTextBox.Text = AnInventory.ProductId.ToString();
+            ProductNameTextBox.Text = AnInventory.ProductName;
+            ProductPriceTextBox.Text = AnInventory.ProductPrice.ToString();
+            QuantityInStockTextBox.Text = AnInventory.QuantityInStock.ToString();
+            LastUpdatedTextBox.Text = AnInventory.LastUpdated.ToString();
+            StockStatusTextBox.Text = AnInventory.StockStatus;
+            chkActive.Checked = AnInventory.Active;
+        }
+
+    }
 }

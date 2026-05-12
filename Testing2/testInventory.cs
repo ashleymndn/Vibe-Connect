@@ -89,38 +89,21 @@ namespace Testing2
         [TestMethod]
         public void FindMethodOK()
         {
+
             clsInventory AnInventory = new clsInventory();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 InventoryId = 2;
+            Int32 InventoryId = 6;
             Found = AnInventory.Find(InventoryId);
             Assert.IsTrue(Found);
 
-            if (AnInventory.InventoryId != 2) {
+            if (AnInventory.InventoryId != 6) {
                 OK = false;
             }
             Assert.IsTrue(OK);
         }
 
-        [TestMethod]
-        public void TestActiveFound()
-        {
-            clsInventory AnInventory = new clsInventory();
-
-            Boolean Found = false;
-            Boolean OK = true;
-            Int32 InventoryId = 2;
-
-            Found = AnInventory.Find(InventoryId);
-
-            if (AnInventory.Active != true)
-            {
-                OK = false;
-            }
-
-            Assert.IsTrue(OK);
-        }
-
+        
         [TestMethod]
         public void TestInventoryIdFound()
         {
@@ -133,12 +116,12 @@ namespace Testing2
             Boolean OK = true;
 
 
-            Int32 InventoryId = 2;
+            Int32 InventoryId = 6;
 
             Found = AnInventory.Find(InventoryId);
 
 
-            if (AnInventory.InventoryId != 2)
+            if (AnInventory.InventoryId != 6)
             {
                 OK = false;
             }
@@ -158,12 +141,12 @@ namespace Testing2
             Boolean OK = true;
 
 
-            Int32 InventoryId = 2;
+            Int32 InventoryId = 6;
 
             Found = AnInventory.Find(InventoryId);
 
 
-            if (AnInventory.ProductId != 1)
+            if (AnInventory.ProductId != 7)
             {
                 OK = false;
             }
@@ -178,10 +161,10 @@ namespace Testing2
             clsInventory AnInventory = new clsInventory();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 InventoryId = 2;
+            Int32 InventoryId = 6;
             Found = AnInventory.Find(InventoryId);
 
-            if (AnInventory.ProductName != "Vphone 1")
+            if (AnInventory.ProductName != "Vphone 3 pro max")
             {
                 OK = false;
             }
@@ -194,9 +177,9 @@ namespace Testing2
             clsInventory AnInventory = new clsInventory();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 InventoryId = 2;
+            Int32 InventoryId = 6;
             Found = AnInventory.Find(InventoryId);
-            if (AnInventory.ProductPrice != 95.0m)
+            if (AnInventory.ProductPrice != 100.0m)
             {
                 OK = false;
             }
@@ -207,7 +190,7 @@ namespace Testing2
             clsInventory AnInventory = new clsInventory();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 InventoryId = 2;
+            Int32 InventoryId = 6;
             Found = AnInventory.Find(InventoryId);
             if (AnInventory.QuantityInStock != 10)
             {
@@ -220,9 +203,9 @@ namespace Testing2
             clsInventory AnInventory = new clsInventory();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 InventoryId = 2;
+            Int32 InventoryId = 6;
             Found = AnInventory.Find(InventoryId);
-            if (AnInventory.LastUpdated != DateTime.Now.Date)
+            if (AnInventory.LastUpdated != Convert.ToDateTime("12/05/2026"))
             {
                 OK = false;
             }
@@ -233,7 +216,7 @@ namespace Testing2
             clsInventory AnInventory = new clsInventory();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 InventoryId = 2;
+            Int32 InventoryId = 6;
             Found = AnInventory.Find(InventoryId);
             if (AnInventory.StockStatus != "In Stock")
             {

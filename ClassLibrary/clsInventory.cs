@@ -88,19 +88,35 @@ namespace ClassLibrary
         }
         public bool Find(int inventoryId)
         {
-            mInventoryId = 2;
-            mProductId = 1;
-            mProductName = "Vphone 1";
-            mProductPrice = 95.0m;
-            mQuantityInStock = 10;
-            mLastUpdate = DateTime.Now.Date;
-            mStockStatus = "In Stock";
-            mActive = true;
+            // create instance of data connection
+            clsDataConnection DB = new clsDataConnection();
 
-            return true;
+            // add parameter
+            DB.AddParameter("@InventoryId", inventoryId);
+
+            // execute stored procedure
+            DB.Execute("sproc_InventoryTable_FilterByInventoryId");
+
+            // if one record found
+            if (DB.Count == 1)
+            {
+                // copy data from database to private members
+                mInventoryId = Convert.ToInt32(DB.DataTable.Rows[0]["InventoryId"]);
+                mProductId = Convert.ToInt32(DB.DataTable.Rows[0]["ProductId"]);
+                mProductName = Convert.ToString(DB.DataTable.Rows[0]["ProductName"]);
+                mProductPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["ProductPrice"]);
+                mQuantityInStock = Convert.ToInt32(DB.DataTable.Rows[0]["QuantityInStock"]);
+                mLastUpdate = Convert.ToDateTime(DB.DataTable.Rows[0]["LastUpdated"]);
+                mStockStatus = Convert.ToString(DB.DataTable.Rows[0]["StockStatus"]);
+                
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-
-       
     }   
 }
 
