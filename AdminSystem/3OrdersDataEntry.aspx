@@ -21,6 +21,7 @@
         <p>
             <asp:Label ID="lblOrderDate" runat="server" style="z-index: 1; left: 25px; top: 139px; position: absolute" Text="Order Date" width="119px" height="22px"></asp:Label>
             <asp:TextBox ID="txtOrderDate" runat="server" style="z-index: 1; left: 148px; top: 141px; position: absolute; width: 193px"></asp:TextBox>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 374px; top: 17px; position: absolute; width: 66px" Text="Find" />
         </p>
         <p>
             <asp:Label ID="lblbTotal" runat="server" style="z-index: 1; left: 25px; top: 180px; position: absolute" Text="Total" width="119px" height="22px"></asp:Label>
