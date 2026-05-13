@@ -36,7 +36,7 @@ namespace Testing3
         public void CustomerIdPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
-            Int32 TestData = 1;
+            Int32 TestData = 101;
             AnOrder.CustomerId = TestData;
             Assert.AreEqual(AnOrder.CustomerId, TestData);
         }
@@ -55,7 +55,7 @@ namespace Testing3
         public void TotalPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
-            decimal TestData = 900.99m;
+            decimal TestData = 2499.00m;
             AnOrder.Total = TestData;
             Assert.AreEqual(AnOrder.Total, TestData);
         }
@@ -64,7 +64,7 @@ namespace Testing3
         public void AddressPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
-            string TestData = "Dubai Marina";
+            string TestData = "123 SYcamore Lane";
             AnOrder.Address = TestData;
             Assert.AreEqual(AnOrder.Address, TestData);
         }
@@ -73,7 +73,7 @@ namespace Testing3
         public void OrderStatusPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
-            string TestData = "Processing";
+            string TestData = "Pending";
             AnOrder.OrderStatus = TestData;
             Assert.AreEqual(AnOrder.OrderStatus, TestData);
         }
@@ -82,7 +82,7 @@ namespace Testing3
         public void IsDeliveredPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
-            bool TestData = true;
+            bool TestData = false;
             AnOrder.IsDelivered = TestData;
             Assert.AreEqual(AnOrder.IsDelivered, TestData);
         }
@@ -92,7 +92,7 @@ namespace Testing3
         {
             clsOrders AnOrder = new clsOrders();
             Boolean Found = false;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
             Assert.IsTrue(Found);
             
@@ -106,9 +106,9 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.OrderId != 21)
+            if (AnOrder.OrderId != 1)
             {
                 OK = false;
             }
@@ -122,9 +122,9 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.CustomerId != 2001)
+            if (AnOrder.CustomerId != 101)
             {
                 OK = false;
             }
@@ -138,9 +138,9 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.OrderDate != Convert.ToDateTime("05/04/2025"))
+            if (AnOrder.OrderDate != Convert.ToDateTime("07/02/2025"))
             {
                 OK = false;
             }
@@ -154,9 +154,9 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.Total != 1899.00m)
+            if (AnOrder.Total != 2499.00m)
             {
                 OK = false;
             }
@@ -170,9 +170,9 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.Address != "12 Sycamore St.")
+            if (AnOrder.Address != "123 Sycamore Lane")
             {
                 OK = false;
             }
@@ -186,7 +186,7 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.OrderStatus != "Pending")
             {
@@ -202,7 +202,7 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.IsDelivered != false)
             {
