@@ -64,7 +64,7 @@ namespace Testing3
         public void AddressPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
-            string TestData = "123 SYcamore Lane";
+            string TestData = "123 Sycamore Lane";
             AnOrder.Address = TestData;
             Assert.AreEqual(AnOrder.Address, TestData);
         }
@@ -73,7 +73,7 @@ namespace Testing3
         public void OrderStatusPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
-            string TestData = "Pending";
+            string TestData = "Delivered";
             AnOrder.OrderStatus = TestData;
             Assert.AreEqual(AnOrder.OrderStatus, TestData);
         }
@@ -82,7 +82,7 @@ namespace Testing3
         public void IsDeliveredPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
-            bool TestData = false;
+            bool TestData = true;
             AnOrder.IsDelivered = TestData;
             Assert.AreEqual(AnOrder.IsDelivered, TestData);
         }
@@ -188,7 +188,7 @@ namespace Testing3
             Boolean OK = true;
             Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.OrderStatus != "Pending")
+            if (AnOrder.OrderStatus != "Delivered")
             {
                 OK = false;
             }
@@ -204,7 +204,7 @@ namespace Testing3
             Boolean OK = true;
             Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.IsDelivered != false)
+            if (AnOrder.IsDelivered != true)
             {
                 OK = false;
             }
