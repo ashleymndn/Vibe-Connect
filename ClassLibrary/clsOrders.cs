@@ -135,6 +135,76 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string customerId, string orderDate, string total, string address, string orderStatus)
+        {
+            String Error = "";
+            DateTime DateTemp;
+            if (customerId.Length == 0)
+            {
+                Error = Error + "The customer id may not be blank : ";
+            }
+
+            if (customerId.Length > 6)
+            {
+                Error = Error + "The customer id may not be greater than 6 characters  : ";
+            }
+
+            DateTime DateComp = DateTime.Now.Date;
+
+            try
+            {
+                DateTemp = Convert.ToDateTime(orderDate);
+
+                if (DateTemp < DateComp)
+                {
+                    Error = Error + "The date cannnot be in the past : ";
+                }
+                if (DateTemp > DateComp)
+                {
+                    Error = Error + "The date cannnot be in the future : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not a vlaid date : ";
+            }
+
+            if (total.Length == 0)
+            {
+                Error = Error + "The total may not be blank : ";
+            }
+
+            if (total.Length > 300)
+            {
+                Error = Error + "The total must be less than 300 characters : ";
+            }
+
+            if (address.Length == 0)
+            {
+                Error = Error + "The address may not be blank : ";
+            }
+
+            if (address.Length > 300)
+            {
+                Error = Error + "The address must be less than 300 characters : ";
+            }
+
+            if (orderStatus.Length == 0)
+            {
+                Error = Error + "The order status may not be blank : ";
+            }
+
+
+            if (orderStatus.Length > 50)
+            {
+                Error = Error + "The order status must be less than 300 characters : ";
+            }
+
+
+            return Error;
+
+        }
     }
 }
 
