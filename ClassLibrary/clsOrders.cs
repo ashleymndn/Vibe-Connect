@@ -167,7 +167,7 @@ namespace ClassLibrary
             }
             catch
             {
-                Error = Error + "The date was not a vlaid date : ";
+                Error = Error + "The date was not a valid date : ";
             }
 
             if (total.Length == 0)
@@ -175,9 +175,9 @@ namespace ClassLibrary
                 Error = Error + "The total may not be blank : ";
             }
 
-            if (total.Length > 300)
+            if (total.Length > 100)
             {
-                Error = Error + "The total must be less than 300 characters : ";
+                Error = Error + "The total must be less than 100 characters : ";
             }
 
             if (address.Length == 0)
@@ -195,10 +195,9 @@ namespace ClassLibrary
                 Error = Error + "The order status may not be blank : ";
             }
 
-
-            if (orderStatus.Length > 50)
+            if (orderStatus.Length > 32)
             {
-                Error = Error + "The order status must be less than 300 characters : ";
+                Error = Error + "The order status must be less than 50 characters : ";
             }
 
 

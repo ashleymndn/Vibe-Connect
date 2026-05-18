@@ -423,7 +423,8 @@ namespace Testing3
         {
             clsOrders AnOrder = new clsOrders();
             String Error = "";
-            string Total = "00000.00";
+            string Total = "";
+            Total = Total.PadRight(99, '0');
             Error = AnOrder.Valid(CustomerId, OrderDate, Total, Address, OrderStatus);
             Assert.AreEqual(Error, "");
         }
@@ -433,7 +434,8 @@ namespace Testing3
         {
             clsOrders AnOrder = new clsOrders();
             String Error = "";
-            Total = Total.PadRight(300, '0');
+            string Total = "";
+            Total = Total.PadRight(100, '0');
             Error = AnOrder.Valid(CustomerId, OrderDate, Total, Address, OrderStatus);
             Assert.AreEqual(Error, "");
         }
@@ -443,7 +445,8 @@ namespace Testing3
         {
             clsOrders AnOrder = new clsOrders();
             String Error = "";
-            Total = Total.PadRight(250, '0');
+            string Total = "";
+            Total = Total.PadRight(50, '0');
             Error = AnOrder.Valid(CustomerId, OrderDate, Total, Address, OrderStatus);
             Assert.AreEqual(Error, "");
         }
@@ -453,7 +456,8 @@ namespace Testing3
         {
             clsOrders AnOrder = new clsOrders();
             String Error = "";
-            Total = Total.PadRight(301, '0');
+            string Total = "";
+            Total = Total.PadRight(101, '0');
             Error = AnOrder.Valid(CustomerId, OrderDate, Total, Address, OrderStatus);
             Assert.AreNotEqual(Error, "");
         }
@@ -464,7 +468,7 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             String Error = "";
             string Total = "";
-            Total = Total.PadRight(500, '0');
+            Total = Total.PadRight(300, '0');
             Error = AnOrder.Valid(CustomerId, OrderDate, Total, Address, OrderStatus);
             Assert.AreNotEqual(Error, "");
         }
@@ -555,46 +559,6 @@ namespace Testing3
             Assert.AreNotEqual(Error, "");
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         [TestMethod]
         public void OrderStatusMinInLessOne()
         {
@@ -631,7 +595,7 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             String Error = "";
             string OrderStatus = "";
-            OrderStatus = OrderStatus.PadRight(49, 'w');
+            OrderStatus = OrderStatus.PadRight(31, 'w');
             Error = AnOrder.Valid(CustomerId, OrderDate, Total, Address, OrderStatus);
             Assert.AreEqual(Error, "");
         }
@@ -642,7 +606,7 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             String Error = "";
             string OrderStatus = "";
-            OrderStatus = OrderStatus.PadRight(50, 'w');
+            OrderStatus = OrderStatus.PadRight(32, 'w');
             Error = AnOrder.Valid(CustomerId, OrderDate, Total, Address, OrderStatus);
             Assert.AreEqual(Error, "");
         }
@@ -653,7 +617,7 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             String Error = "";
             string OrderStatus = "";
-            OrderStatus = OrderStatus.PadRight(51, 'w');
+            OrderStatus = OrderStatus.PadRight(33, 'w');
             Error = AnOrder.Valid(CustomerId, OrderDate, Total, Address, OrderStatus);
             Assert.AreNotEqual(Error, "");
         }
@@ -664,7 +628,7 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             String Error = "";
             string OrderStatus = "";
-            OrderStatus = OrderStatus.PadRight(25, 'w');
+            OrderStatus = OrderStatus.PadRight(16, 'w');
             Error = AnOrder.Valid(CustomerId, OrderDate, Total, Address, OrderStatus);
             Assert.AreEqual(Error, "");
         }
@@ -675,7 +639,7 @@ namespace Testing3
             clsOrders AnOrder = new clsOrders();
             String Error = "";
             string OrderStatus = "";
-            OrderStatus = OrderStatus.PadRight(500, 'w');
+            OrderStatus = OrderStatus.PadRight(100, 'w');
             Error = AnOrder.Valid(CustomerId, OrderDate, Total, Address, OrderStatus);
             Assert.AreNotEqual(Error, "");
         }
