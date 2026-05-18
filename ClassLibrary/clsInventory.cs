@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 
 namespace ClassLibrary
 {
@@ -11,8 +12,130 @@ namespace ClassLibrary
         private decimal mProductPrice;
         private Int32 mQuantityInStock;
         private string mStockStatus;
-        private DateTime mLastUpdate;
+        private DateTime mLastUpdated;
         private bool mActive;
+
+
+
+
+
+        public string Valid(string ProductName, string StockStatus, string LastUpdated, string ProductPrice, string QuantityInStock)
+        {
+            //create a string variable to store the error
+            String Error = "";
+
+            //create temporary variables
+            DateTime DateTemp;
+            decimal PriceTemp;
+            int QuantityTemp;
+
+            //PRODUCT NAME VALIDATION
+
+            //if the product name is blank
+            if (ProductName.Length == 0)
+            {
+                Error = Error + "The product name may not be blank. ";
+            }
+
+            //if the product name is too long
+            if (ProductName.Length > 15)
+            {
+                Error = Error + "The product name must not exceed 15 characters. ";
+            }
+
+            //STOCK STATUS VALIDATION
+
+            //if the stock status is blank
+            if (StockStatus.Length == 0)
+            {
+                Error = Error + "The stock status may not be blank. ";
+            }
+
+            //if the stock status is too long
+            if (StockStatus.Length > 15)
+            {
+                Error = Error + "The stock status must not exceed 15 characters. ";
+            }
+
+            //LAST UPDATED DATE VALIDATION
+
+            try
+            {
+                //copy the LastUpdated value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(LastUpdated);
+
+                //check if the date is in the past
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The last updated date cannot be in the past. ";
+                }
+
+                //check if the date is in the future
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The last updated date cannot be in the future. ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The last updated date is not a valid date. ";
+            }
+
+            //PRODUCT PRICE VALIDATION
+
+            try
+            {
+                //convert the ProductPrice value
+                PriceTemp = Convert.ToDecimal(ProductPrice);
+
+                //check if the price is less than or equal to zero
+                if (PriceTemp <= 0)
+                {
+                    Error = Error + "The product price must be greater than zero. ";
+                }
+
+                //check if the price is too high
+                if (PriceTemp > 10000)
+                {
+                    Error = Error + "The product price must not exceed 10000. ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The product price is not valid. ";
+            }
+
+            //QUANTITY IN STOCK VALIDATION
+
+            try
+            {
+                //convert the QuantityInStock value
+                QuantityTemp = Convert.ToInt32(QuantityInStock);
+
+                //check if quantity is negative
+                if (QuantityTemp < 0)
+                {
+                    Error = Error + "The quantity in stock cannot be negative. ";
+                }
+
+                //check if quantity is too high
+                if (QuantityTemp > 1000)
+                {
+                    Error = Error + "The quantity in stock must not exceed 1000. ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The quantity in stock is not valid. ";
+            }
+
+            //return any error messages
+            return Error;
+        }
+
 
         public bool Active
         {
@@ -72,10 +195,10 @@ namespace ClassLibrary
         }
         public DateTime LastUpdated {
             get { 
-                return mLastUpdate; 
+                return mLastUpdated; 
             }
             set { 
-                mLastUpdate = value;
+                mLastUpdated = value;
             }
         }
         public string StockStatus {
@@ -113,7 +236,7 @@ namespace ClassLibrary
                 mProductName = Convert.ToString(DB.DataTable.Rows[0]["ProductName"]);
                 mProductPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["ProductPrice"]);
                 mQuantityInStock = Convert.ToInt32(DB.DataTable.Rows[0]["QuantityInStock"]);
-                mLastUpdate = Convert.ToDateTime(DB.DataTable.Rows[0]["LastUpdated"]);
+                mLastUpdated = Convert.ToDateTime(DB.DataTable.Rows[0]["LastUpdated"]);
                 mStockStatus = Convert.ToString(DB.DataTable.Rows[0]["StockStatus"]);
                 
 
@@ -123,7 +246,11 @@ namespace ClassLibrary
             {
                 return false;
             }
+
+       
         }
+
+        
     }   
 }
 
