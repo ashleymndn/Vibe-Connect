@@ -60,19 +60,46 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
+        //create instance of class
         clsInventory AnInventory = new clsInventory();
-        AnInventory.InventoryId=Convert.ToInt32(InventoryIdTextBox.Text);
-        AnInventory.ProductId=Convert.ToInt32(ProductIdTextBox.Text);
-        AnInventory.ProductName= ProductNameTextBox.Text;
-        AnInventory.ProductPrice = Convert.ToDecimal(ProductPriceTextBox.Text);
-        AnInventory.QuantityInStock = Convert.ToInt32(QuantityInStockTextBox.Text);
-        AnInventory.LastUpdated = Convert.ToDateTime(LastUpdatedTextBox.Text);
-        AnInventory.StockStatus = StockStatusTextBox.Text;
-        AnInventory.Active = chkActive.Checked;
 
-        Session["AnInventory"] = AnInventory;
+        
+        string ProductName = ProductNameTextBox.Text;
+        string StockStatus = StockStatusTextBox.Text;
+        string LastUpdated = LastUpdatedTextBox.Text;
+        string ProductPrice = ProductPriceTextBox.Text;
+        string QuantityInStock = QuantityInStockTextBox.Text;
 
-        Response.Redirect("2InventoryViewer.aspx");
+        //variable for error messages
+        string Error = "";
+
+        //call the Valid function
+        Error = AnInventory.Valid(ProductName,StockStatus,LastUpdated,ProductPrice,QuantityInStock);
+
+        //if no errors found
+        if (Error == "")
+        {
+            //capture data
+            AnInventory.InventoryId = Convert.ToInt32(InventoryIdTextBox.Text);
+            AnInventory.ProductId = Convert.ToInt32(ProductIdTextBox.Text);
+            AnInventory.ProductName = ProductName;
+            AnInventory.ProductPrice = Convert.ToDecimal(ProductPrice);
+            AnInventory.QuantityInStock = Convert.ToInt32(QuantityInStock);
+            AnInventory.LastUpdated = Convert.ToDateTime(LastUpdated);
+            AnInventory.StockStatus = StockStatus;
+            AnInventory.Active = chkActive.Checked;
+
+            //store object in session
+            Session["AnInventory"] = AnInventory;
+
+            //navigate to viewer page
+            Response.Redirect("2InventoryViewer.aspx");
+        }
+        else
+        {
+            //display error messages
+            lblError.Text = Error;
+        }
     }
 
 
