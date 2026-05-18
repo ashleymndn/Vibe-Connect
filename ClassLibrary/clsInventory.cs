@@ -86,6 +86,13 @@ namespace ClassLibrary
                 mStockStatus = value;
             }
         }
+
+
+
+
+
+
+
         public bool Find(int inventoryId)
         {
             // create instance of data connection
