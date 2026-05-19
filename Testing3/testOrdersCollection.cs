@@ -78,5 +78,74 @@ namespace Testing3
             Assert.AreEqual(AllOrders.Count, TestList.Count);
         }
 
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsOrdersCollection AllOrders = new clsOrdersCollection();
+
+            clsOrders TestItem = new clsOrders();
+
+            Int32 PrimaryKey = 0;
+
+            //set its properties
+            TestItem.IsDelivered = false;
+            TestItem.OrderId = 5;
+            TestItem.CustomerId = 8;
+            TestItem.Total = 95.00m;
+            TestItem.OrderDate = DateTime.Now;
+            TestItem.Address = "8233 Westwood Avenue";
+            TestItem.OrderStatus = "Pending";
+
+            //set ThisAddress to the test data
+            AllOrders.ThisOrder = TestItem;
+
+            //add the record
+            PrimaryKey = AllOrders.Add();
+
+            //set the primary key of the test data
+            TestItem.OrderId = PrimaryKey;
+
+            //find the record
+            AllOrders.ThisOrder.Find(PrimaryKey);
+
+            //test to see that the two values are the same
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsOrdersCollection AllOrders = new clsOrdersCollection();
+            clsOrders TestItem = new clsOrders();
+            Int32 PrimaryKey = 0;
+
+            TestItem.IsDelivered = false;
+            TestItem.OrderId = 5;
+            TestItem.CustomerId = 8;
+            TestItem.Total = 95.00m;
+            TestItem.OrderDate = DateTime.Now;
+            TestItem.Address = "8233 Westwood Avenue";
+            TestItem.OrderStatus = "Pending";
+
+            AllOrders.ThisOrder = TestItem;
+
+            PrimaryKey = AllOrders.Add();
+
+            TestItem.OrderId = PrimaryKey;
+
+            TestItem.IsDelivered = false;
+            TestItem.OrderId = 11;
+            TestItem.CustomerId = 14;
+            TestItem.Total = 275.00m;
+            TestItem.OrderDate = DateTime.Now;
+            TestItem.Address = "89 Elmore Lane";
+            TestItem.OrderStatus = "Pending";
+
+            AllOrders.ThisOrder = TestItem;
+            AllOrders.Update();
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
     }
 }
