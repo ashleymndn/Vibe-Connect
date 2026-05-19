@@ -19,8 +19,31 @@ public partial class _1_List : System.Web.UI.Page
     {
         clsOrdersCollection Orders = new clsOrdersCollection();
         lstOrdersList.DataSource = Orders.OrdersList;
-        lstOrdersList.DataValueField = "CustomerId";
+        lstOrdersList.DataValueField = "OrderId";
         lstOrdersList.DataTextField = "OrderDate";
         lstOrdersList.DataBind();
+    }
+
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        Session["OrderId"] = -1;
+        Response.Redirect("3OrdersDataEntry.aspx");
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 OrderId;
+
+        if (lstOrdersList.SelectedIndex != -1)
+        {
+            OrderId = Convert.ToInt32(lstOrdersList.SelectedValue);
+            Session["OrderId"] = OrderId;
+            Response.Redirect("3OrdersDataEntry.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record from the list to edit";
+        }
     }
 }

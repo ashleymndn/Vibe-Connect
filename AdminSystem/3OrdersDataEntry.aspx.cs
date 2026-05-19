@@ -8,8 +8,17 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 OrderId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        OrderId = Convert.ToInt32(Session["OrderId"]);
+        if (IsPostBack == false)
+        {
+            if (OrderId != -1)
+            {
+                DisplayOrders();
+            }
+        }
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -35,6 +44,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture the Is Delivered check box
         string IsDelivered = chkIsDelivered.Text;
 
+
+
         //variable to store any error messages
         string Error = "";
 
@@ -43,6 +54,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         if (Error == "")
         {
+            //capture the order id
+            AnOrder.OrderId = OrderId;
+
             //capture the Customer Id
             AnOrder.CustomerId = Convert.ToInt32(CustomerId);
 
@@ -61,11 +75,32 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //capture the Is Delivered check box
             AnOrder.IsDelivered = chkIsDelivered.Checked;
 
-            //store the order in the session object
-            Session["AnOrder"] = AnOrder;
+            //create a new instance fo the orders collection
+            clsOrdersCollection OrdersList = new clsOrdersCollection();
 
-            //navigate to the view page
-            Response.Redirect("3OrdersViewer.aspx");
+            //if this is a new record i.e. OrderId = -1 the add the data
+            if (OrderId == -1)
+            {
+                //set the ThisOrder property
+                OrdersList.ThisOrder = AnOrder;
+                //update the record
+                OrdersList.Add();
+
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                OrdersList.ThisOrder.Find(OrderId);
+                //set the ThisOrder property
+                OrdersList.ThisOrder = AnOrder;
+                // update the record
+                OrdersList.Update();
+
+            }
+        
+            //redirect back to the list page
+            Response.Redirect("OrdersList.aspx");
         }
         else
         {
@@ -92,10 +127,26 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtCustomerId.Text = AnOrder.CustomerId.ToString();
             txtOrderDate.Text = AnOrder.OrderDate.ToString();
             txtTotal.Text = AnOrder.Total.ToString();
-            txtAddress.Text = AnOrder.Address;
+            txtAddress.Text = AnOrder.Address.ToString();
             txtOrderStatus.Text = AnOrder.OrderStatus.ToString();
             chkIsDelivered.Checked = AnOrder.IsDelivered;
 
         }
+    }
+
+    void DisplayOrders()
+    {
+        //create an instance of the address book
+        clsOrdersCollection OrdersBook = new clsOrdersCollection();
+        //find the record to update
+        OrdersBook.ThisOrder.Find(OrderId);
+        //display the dat for the record
+        txtOrderId.Text = OrdersBook.ThisOrder.OrderId.ToString();
+        txtCustomerId.Text = OrdersBook.ThisOrder.CustomerId.ToString();
+        txtOrderDate.Text = OrdersBook.ThisOrder.OrderDate.ToString();
+        txtTotal.Text = OrdersBook.ThisOrder.Total.ToString();
+        txtAddress.Text = OrdersBook.ThisOrder.Address;
+        txtOrderStatus.Text = OrdersBook.ThisOrder.OrderStatus;
+        chkIsDelivered.Checked = OrdersBook.ThisOrder.IsDelivered;
     }
 }
