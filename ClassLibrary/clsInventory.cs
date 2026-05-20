@@ -14,7 +14,7 @@ namespace ClassLibrary
         private string mStockStatus;
         private DateTime mLastUpdated;
         private bool mActive;
-
+         
 
 
 
@@ -96,9 +96,9 @@ namespace ClassLibrary
                 }
 
                 //check if the price is too high
-                if (PriceTemp > 10000)
+                if (PriceTemp > 300)
                 {
-                    Error = Error + "The product price must not exceed 10000. ";
+                    Error = Error + "The product price must not exceed 300. ";
                 }
             }
             catch
@@ -121,9 +121,9 @@ namespace ClassLibrary
                 }
 
                 //check if quantity is too high
-                if (QuantityTemp > 1000)
+                if (QuantityTemp > 100)
                 {
-                    Error = Error + "The quantity in stock must not exceed 1000. ";
+                    Error = Error + "The quantity in stock must not exceed 100. ";
                 }
             }
             catch
