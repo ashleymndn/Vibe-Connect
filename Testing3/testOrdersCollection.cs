@@ -182,5 +182,54 @@ namespace Testing3
             //test to see that the record was not found
             Assert.IsFalse(Found);
         }
+
+        [TestMethod]
+        public void ReportByOrderStatusMethodOK()
+        {
+            clsOrdersCollection AllOrders = new clsOrdersCollection();
+            clsOrdersCollection FilteredOrders = new clsOrdersCollection();
+            FilteredOrders.ReportByOrderStatus("");
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByOrderStatusNoneFound()
+        {
+            clsOrdersCollection FilteredOrders = new clsOrdersCollection();
+            FilteredOrders.ReportByOrderStatus("xxxxxx");
+            Assert.AreEqual(0, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByOrderStatusDataFound()
+        {
+            //create an instance of filtered data
+            clsOrdersCollection FilteredOrders = new clsOrdersCollection();
+            //variable to store the outcome
+            Boolean OK = true;
+            //apply the order status that doesn't exist
+            FilteredOrders.ReportByOrderStatus("Pending");
+            //check that the corrct number of records are foumd
+            if (FilteredOrders.Count == 2)
+            {
+                //check to see that the first record is 24
+                if (FilteredOrders.OrdersList[0].OrderId != 26)
+                {
+                    OK = false;
+                }
+                //check to see that the first record is 26
+                if (FilteredOrders.OrdersList[0].OrderId != 36)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(OK);
+        }
+
     }
 }
