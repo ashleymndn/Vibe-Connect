@@ -63,7 +63,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create instance of class
         clsInventory AnInventory = new clsInventory();
 
-        
         string ProductName = ProductNameTextBox.Text;
         string StockStatus = StockStatusTextBox.Text;
         string LastUpdated = LastUpdatedTextBox.Text;
@@ -74,7 +73,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string Error = "";
 
         //call the Valid function
-        Error = AnInventory.Valid(ProductName,StockStatus,LastUpdated,ProductPrice,QuantityInStock);
+        Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
         //if no errors found
         if (Error == "")
@@ -89,11 +88,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnInventory.StockStatus = StockStatus;
             AnInventory.Active = chkActive.Checked;
 
-            //store object in session
-            Session["AnInventory"] = AnInventory;
+            //create collection object
+            clsInventoryCollection InventoryBook = new clsInventoryCollection();
 
-            //navigate to viewer page
-            Response.Redirect("2InventoryViewer.aspx");
+            //assign data to ThisInventory
+            InventoryBook.ThisInventory = AnInventory;
+
+            //add record to database
+            InventoryBook.Add();
+
+            //redirect
+            Response.Redirect("InventoryList.aspx");
         }
         else
         {

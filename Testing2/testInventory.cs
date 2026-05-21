@@ -68,6 +68,7 @@ namespace Testing2
         public class testInventory
 
         {
+            string ProductId = "1";
             string ProductName = "Vphone2";
             string StockStatus = "In Stock";
             string LastUpdated = DateTime.Now.Date.ToShortDateString();
@@ -306,7 +307,7 @@ namespace Testing2
             {
                 clsInventory AnInventory = new clsInventory();
                 String Error = "";
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
                 Assert.AreEqual(Error, "");
             }
 
@@ -317,7 +318,7 @@ namespace Testing2
                 String Error = "";
                 string ProductName = "";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -329,7 +330,7 @@ namespace Testing2
                 String Error = "";
                 string ProductName = "V";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -341,7 +342,7 @@ namespace Testing2
                 String Error = "";
                 string ProductName = "VV";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -355,7 +356,7 @@ namespace Testing2
                 string ProductName = "";
                 ProductName = ProductName.PadRight(14, 'V');
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -369,7 +370,7 @@ namespace Testing2
                 string ProductName = "";
                 ProductName = ProductName.PadRight(15, 'V');
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -383,7 +384,7 @@ namespace Testing2
                 string ProductName = "";
                 ProductName = ProductName.PadRight(16, 'V');
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -395,7 +396,7 @@ namespace Testing2
                 String Error = "";
                 string ProductName = "Vphone2";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -409,7 +410,7 @@ namespace Testing2
                 string ProductName = "";
                 ProductName = ProductName.PadRight(100, 'V');
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -425,7 +426,7 @@ namespace Testing2
 
                 String LastUpdated = TestDate.ToShortDateString();
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -442,7 +443,7 @@ namespace Testing2
 
                 String LastUpdated = TestDate.ToShortDateString();
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -458,7 +459,7 @@ namespace Testing2
 
                 String LastUpdated = TestDate.ToShortDateString();
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -475,7 +476,7 @@ namespace Testing2
 
                 String LastUpdated = TestDate.ToShortDateString();
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -492,7 +493,7 @@ namespace Testing2
 
                 String LastUpdated = TestDate.ToShortDateString();
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -505,7 +506,7 @@ namespace Testing2
 
                 String LastUpdated = "This is not a date!";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -516,7 +517,7 @@ namespace Testing2
                 clsInventory AnInventory = new clsInventory();
                 String Error = "";
                 string StockStatus = "";
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
                 Assert.AreNotEqual(Error, "");
             }
             [TestMethod]
@@ -526,7 +527,7 @@ namespace Testing2
                 String Error = "";
                 string StockStatus = "I";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -536,7 +537,7 @@ namespace Testing2
                 clsInventory AnInventory = new clsInventory();
                 String Error = "";
                 string StockStatus = "In";
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
                 Assert.AreEqual(Error, "");
 
             }
@@ -546,7 +547,7 @@ namespace Testing2
                 clsInventory AnInventory = new clsInventory();
                 String Error = "";
                 string StockStatus = "In";
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
                 Assert.AreEqual(Error, "");
 
             }
@@ -556,7 +557,7 @@ namespace Testing2
                 clsInventory AnInventory = new clsInventory();
                 String Error = "";
                 string StockStatus = "In Stock";
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
                 Assert.AreEqual(Error, "");
             }
             [TestMethod]
@@ -568,7 +569,7 @@ namespace Testing2
                 string StockStatus = "";
                 StockStatus = StockStatus.PadRight(16, 'I');
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -579,7 +580,7 @@ namespace Testing2
                 String Error = "";
                 string StockStatus = "";
                 StockStatus = StockStatus.PadRight(100, 'I');
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
                 Assert.AreNotEqual(Error, "");
             }
             [TestMethod]
@@ -588,7 +589,7 @@ namespace Testing2
                 clsInventory AnInventory = new clsInventory();
                 String Error = "";
                 string StockStatus = "In St";
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
                 Assert.AreEqual(Error, "");
             }
             [TestMethod]
@@ -598,7 +599,7 @@ namespace Testing2
                 String Error = "";
                 string ProductPrice = "-0.01";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -610,7 +611,7 @@ namespace Testing2
                 String Error = "";
                 string ProductPrice = "0.01";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -622,7 +623,7 @@ namespace Testing2
                 String Error = "";
                 string ProductPrice = "1.00";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -634,7 +635,7 @@ namespace Testing2
                 String Error = "";
                 string ProductPrice = "299.99";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -646,7 +647,7 @@ namespace Testing2
                 String Error = "";
                 string ProductPrice = "300.00";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -658,7 +659,7 @@ namespace Testing2
                 String Error = "";
                 string ProductPrice = "300.01";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -670,7 +671,7 @@ namespace Testing2
                 String Error = "";
                 string ProductPrice = "150.00";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -682,7 +683,7 @@ namespace Testing2
                 String Error = "";
                 string ProductPrice = "999999.99";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -694,7 +695,7 @@ namespace Testing2
                 String Error = "";
                 string QuantityInStock = "-1";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -706,7 +707,7 @@ namespace Testing2
                 String Error = "";
                 string QuantityInStock = "0";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -718,7 +719,7 @@ namespace Testing2
                 String Error = "";
                 string QuantityInStock = "1";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -730,7 +731,7 @@ namespace Testing2
                 String Error = "";
                 string QuantityInStock = "99";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -742,7 +743,7 @@ namespace Testing2
                 String Error = "";
                 string QuantityInStock = "100";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -754,7 +755,7 @@ namespace Testing2
                 String Error = "";
                 string QuantityInStock = "101";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -766,7 +767,7 @@ namespace Testing2
                 String Error = "";
                 string QuantityInStock = "50";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreEqual(Error, "");
             }
@@ -778,7 +779,7 @@ namespace Testing2
                 String Error = "";
                 string QuantityInStock = "9999";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
@@ -790,10 +791,143 @@ namespace Testing2
                 String Error = "";
                 string QuantityInStock = "abc";
 
-                Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+                Error = AnInventory.Valid(ProductId,ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
 
                 Assert.AreNotEqual(Error, "");
             }
+            [TestMethod]
+            public void ProductIdMinLessOne()
+            {
+                clsInventory AnInventory = new clsInventory();
+                String Error = "";
+                string ProductId = "0";
+
+                Error = AnInventory.Valid(ProductId, ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+
+                Assert.AreNotEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ProductIdMin()
+            {
+                clsInventory AnInventory = new clsInventory();
+                String Error = "";
+                string ProductId = "1";
+
+                Error = AnInventory.Valid(ProductId, ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ProductIdMinPlusOne()
+            {
+                clsInventory AnInventory = new clsInventory();
+                String Error = "";
+                string ProductId = "2";
+
+                Error = AnInventory.Valid(ProductId, ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ProductIdMaxLessOne()
+            {
+                clsInventory AnInventory = new clsInventory();
+                String Error = "";
+                string ProductId = "99";
+
+                Error = AnInventory.Valid(ProductId, ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ProductIdMax()
+            {
+                clsInventory AnInventory = new clsInventory();
+                String Error = "";
+                string ProductId = "100";
+
+                Error = AnInventory.Valid(ProductId, ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ProductIdMaxPlusOne()
+            {
+                clsInventory AnInventory = new clsInventory();
+                String Error = "";
+                string ProductId = "101";
+
+                Error = AnInventory.Valid(ProductId, ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+
+                Assert.AreNotEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ProductIdExtremeMax()
+            {
+                clsInventory AnInventory = new clsInventory();
+                String Error = "";
+                string ProductId = "999999";
+
+                Error = AnInventory.Valid(ProductId, ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+
+                Assert.AreNotEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ProductIdMid()
+            {
+                clsInventory AnInventory = new clsInventory();
+                String Error = "";
+                string ProductId = "50";
+
+                Error = AnInventory.Valid(ProductId, ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ProductIdInvalidData()
+            {
+                clsInventory AnInventory = new clsInventory();
+                String Error = "";
+                string ProductId = "abc";
+
+                Error = AnInventory.Valid(ProductId, ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+
+                Assert.AreNotEqual(Error, "");
+            }
+
         }
+         
+
+        [TestMethod]
+        public void AddMethodOk()
+        {
+            // create an instance of the class we want to create
+            clsInventoryCollection AllInventories = new clsInventoryCollection();
+            // create an instance of the class we want to test
+            clsInventory AnInventory = new clsInventory();
+            // set the properties of the object
+            AnInventory.InventoryId = 1;
+            AnInventory.ProductId = 1;
+            AnInventory.ProductName = "Test Product";
+            AnInventory.ProductPrice = 9.99m;
+            AnInventory.QuantityInStock = 10;
+            AnInventory.LastUpdated = DateTime.Now.Date;
+            AnInventory.StockStatus = "In Stock";
+            AnInventory.Active = true;
+            // set ThisInventory to the test object
+            AllInventories.ThisInventory = AnInventory;
+            // add the record
+            AllInventories.Add();
+        }
+
+
     }
 }
