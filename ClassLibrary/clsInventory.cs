@@ -19,7 +19,7 @@ namespace ClassLibrary
 
 
 
-        public string Valid(string ProductName, string StockStatus, string LastUpdated, string ProductPrice, string QuantityInStock)
+        public string Valid(string ProductId,string ProductName, string StockStatus, string LastUpdated, string ProductPrice, string QuantityInStock)
         {
             //create a string variable to store the error
             String Error = "";
@@ -28,6 +28,7 @@ namespace ClassLibrary
             DateTime DateTemp;
             decimal PriceTemp;
             int QuantityTemp;
+            int ProductIdTemp;
 
             //PRODUCT NAME VALIDATION
 
@@ -131,10 +132,32 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The quantity in stock is not valid. ";
             }
+            try
+            {
+                //convert ProductId
+                ProductIdTemp = Convert.ToInt32(ProductId);
 
+                //cannot be less than 1
+                if (ProductIdTemp < 1)
+                {
+                    Error = Error + "The product ID must be greater than 0. ";
+                }
+
+                //cannot exceed 100
+                if (ProductIdTemp > 100)
+                {
+                    Error = Error + "The product ID must not exceed 100. ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The product ID is not valid. ";
+            }
             //return any error messages
             return Error;
+
         }
+
 
 
         public bool Active

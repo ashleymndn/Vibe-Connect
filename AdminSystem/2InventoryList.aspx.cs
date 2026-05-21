@@ -23,4 +23,14 @@ public partial class _1_List : System.Web.UI.Page
         lstAddressList.DataValueField = "InventoryId";
         lstAddressList.DataBind();
     }
+
+    protected void lstAddressList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        Session["InventoryId"] = -1;
+        Response.Redirect("2InventoryDataEntry.aspx");
+    }
 }

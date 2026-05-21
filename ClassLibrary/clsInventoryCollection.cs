@@ -6,7 +6,8 @@ namespace ClassLibrary
 {
     public class clsInventoryCollection
     {
-        private List<clsInventory> mInventoryList = new List<clsInventory>();
+        List<clsInventory> mInventoryList = new List<clsInventory>();
+        clsInventory mThisInventory = new clsInventory();
         public List<clsInventory> InventoryList
         {
             get
@@ -27,7 +28,16 @@ namespace ClassLibrary
                
             } 
         }
-        public clsInventory ThisInventory { get; set; }
+        public clsInventory ThisInventory { 
+            get {  
+                return mThisInventory;
+
+            } 
+            set { 
+                mThisInventory = value;
+            }
+           
+        }
         
 
         public clsInventoryCollection()
@@ -68,6 +78,18 @@ namespace ClassLibrary
                 //point at the next record
                 Index++;
             }
+        }
+        public int Add() {  
+           
+            clsDataConnection DB= new clsDataConnection();
+            DB.AddParameter("@ProductId", mThisInventory.ProductId);
+            DB.AddParameter("@ProductName", mThisInventory.ProductName);
+            DB.AddParameter("@ProductPrice", mThisInventory.ProductPrice);
+            DB.AddParameter("@QuantityInStock", mThisInventory.QuantityInStock);
+            DB.AddParameter("@StockStatus", mThisInventory.StockStatus);
+            DB.AddParameter("@LastUpdated", mThisInventory.LastUpdated);
+
+            return DB.Execute("sproc_InventoryTable_Insert");
         }
     }
 }
