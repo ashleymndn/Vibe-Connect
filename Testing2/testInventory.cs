@@ -916,7 +916,7 @@ namespace Testing2
             // set the properties of the object
             AnInventory.InventoryId = 1;
             AnInventory.ProductId = 1;
-            AnInventory.ProductName = "Test Product";
+            AnInventory.ProductName = "Vphone2";
             AnInventory.ProductPrice = 9.99m;
             AnInventory.QuantityInStock = 10;
             AnInventory.LastUpdated = DateTime.Now.Date;
@@ -928,6 +928,52 @@ namespace Testing2
             AllInventories.Add();
         }
 
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create instance of collection class
+            clsInventoryCollection AllInventory = new clsInventoryCollection();
 
+            //create item for testing
+            clsInventory TestItem = new clsInventory();
+
+            //variable to store primary key
+            Int32 PrimaryKey = 0;
+
+            //set properties
+            TestItem.ProductName = "Vphone2";
+            TestItem.ProductPrice = 9.99m;
+            TestItem.StockStatus = "In Stock";
+            TestItem.QuantityInStock = 10;
+            TestItem.ProductId = 1;
+            TestItem.LastUpdated = DateTime.Now.Date;
+
+            //set ThisInventory
+            AllInventory.ThisInventory = TestItem;
+
+            //add record
+            PrimaryKey = AllInventory.Add();
+
+            //set primary key of test data
+            TestItem.InventoryId = PrimaryKey;
+
+            //modify test record
+            TestItem.ProductName = "Updated Phone";
+            TestItem.ProductPrice = 19.99m;
+            TestItem.StockStatus = "Out of Stock";
+            TestItem.QuantityInStock = 5;
+
+            //set updated record
+            AllInventory.ThisInventory = TestItem;
+
+            //perform update
+            AllInventory.Update();
+
+            //find updated record
+            AllInventory.ThisInventory.Find(PrimaryKey);
+
+            //test if updated record matches
+            Assert.AreEqual(AllInventory.ThisInventory.ProductName, TestItem.ProductName);
+        }
     }
 }

@@ -10,9 +10,21 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 InventoryId;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        InventoryId = Convert.ToInt32(Session["InventoryId"]);
 
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (InventoryId != -1)
+            {
+                //display current data
+                DisplayInventory();
+            }
+        }
     }
 
     protected void ProductName_TextChanged(object sender, EventArgs e)
@@ -58,29 +70,53 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 
+    void DisplayInventory()
+    {
+        //create instance of inventory class
+        clsInventory AnInventory = new clsInventory();
+
+        //find the record to update
+        AnInventory.Find(InventoryId);
+
+        //display the data in the controls
+        ProductIdTextBox.Text = AnInventory.ProductId.ToString();
+        ProductNameTextBox.Text = AnInventory.ProductName;
+        ProductPriceTextBox.Text = AnInventory.ProductPrice.ToString();
+        QuantityInStockTextBox.Text = AnInventory.QuantityInStock.ToString();
+        StockStatusTextBox.Text = AnInventory.StockStatus;
+        LastUpdatedTextBox.Text = AnInventory.LastUpdated.ToString();
+    }
+
     protected void btnOk_Click(object sender, EventArgs e)
     {
         //create instance of class
         clsInventory AnInventory = new clsInventory();
 
+        //capture data
+        string ProductId = ProductIdTextBox.Text;
         string ProductName = ProductNameTextBox.Text;
         string StockStatus = StockStatusTextBox.Text;
         string LastUpdated = LastUpdatedTextBox.Text;
         string ProductPrice = ProductPriceTextBox.Text;
         string QuantityInStock = QuantityInStockTextBox.Text;
 
+        //IMPORTANT - capture InventoryId
+        int InventoryId = Convert.ToInt32(InventoryIdTextBox.Text);
+
         //variable for error messages
         string Error = "";
 
-        //call the Valid function
-        Error = AnInventory.Valid(ProductName, StockStatus, LastUpdated, ProductPrice, QuantityInStock);
+        //validate
+        Error = AnInventory.Valid(ProductId, ProductName,
+                                  StockStatus, LastUpdated,
+                                  ProductPrice, QuantityInStock);
 
-        //if no errors found
+        //if valid
         if (Error == "")
         {
-            //capture data
-            AnInventory.InventoryId = Convert.ToInt32(InventoryIdTextBox.Text);
-            AnInventory.ProductId = Convert.ToInt32(ProductIdTextBox.Text);
+            //assign properties
+            AnInventory.InventoryId = InventoryId;
+            AnInventory.ProductId = Convert.ToInt32(ProductId);
             AnInventory.ProductName = ProductName;
             AnInventory.ProductPrice = Convert.ToDecimal(ProductPrice);
             AnInventory.QuantityInStock = Convert.ToInt32(QuantityInStock);
@@ -91,20 +127,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //create collection object
             clsInventoryCollection InventoryBook = new clsInventoryCollection();
 
-            //assign data to ThisInventory
-            InventoryBook.ThisInventory = AnInventory;
-
-            //add record to database
-            InventoryBook.Add();
+            //new record
+            if (InventoryId == -1)
+            {
+                InventoryBook.ThisInventory = AnInventory;
+                InventoryBook.Add();
+            }
+            else
+            {
+                //update existing record
+                InventoryBook.ThisInventory.Find(InventoryId);
+                InventoryBook.ThisInventory = AnInventory;
+                InventoryBook.Update();
+            }
 
             //redirect
             Response.Redirect("InventoryList.aspx");
         }
         else
         {
-            //display error messages
+            //display errors
             lblError.Text = Error;
         }
+
     }
 
 
@@ -130,4 +175,5 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
     }
+    
 }
