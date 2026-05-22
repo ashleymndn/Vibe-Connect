@@ -91,5 +91,19 @@ namespace ClassLibrary
 
             return DB.Execute("sproc_InventoryTable_Insert");
         }
+
+        public void Update()
+        {
+           clsDataConnection DB= new clsDataConnection();
+           DB.AddParameter("@InventoryId", mThisInventory.InventoryId);
+           DB.AddParameter("@ProductId", mThisInventory.ProductId);
+           DB.AddParameter("@ProductName", mThisInventory.ProductName);
+           DB.AddParameter("@ProductPrice", mThisInventory.ProductPrice);
+           DB.AddParameter("@QuantityInStock", mThisInventory.QuantityInStock);
+           DB.AddParameter("@StockStatus", mThisInventory.StockStatus);
+           DB.AddParameter("@LastUpdated", mThisInventory.LastUpdated);
+           DB.Execute("sproc_InventoryTable_Update");
+              
+        }
     }
 }
