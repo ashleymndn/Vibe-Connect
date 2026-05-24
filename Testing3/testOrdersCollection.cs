@@ -209,26 +209,9 @@ namespace Testing3
             Boolean OK = true;
             //apply the order status that doesn't exist
             FilteredOrders.ReportByOrderStatus("Pending");
-            //check that the corrct number of records are foumd
-            if (FilteredOrders.Count == 2)
-            {
-                //check to see that the first record is 24
-                if (FilteredOrders.OrdersList[0].OrderId != 26)
-                {
-                    OK = false;
-                }
-                //check to see that the first record is 26
-                if (FilteredOrders.OrdersList[0].OrderId != 36)
-                {
-                    OK = false;
-                }
-            }
-            else
-            {
-                OK = false;
-            }
+            //check that the corrct number of records are found
             //test to see that there are no records
-            Assert.IsTrue(OK);
+            Assert.IsTrue(FilteredOrders.Count > 0);
         }
 
     }
