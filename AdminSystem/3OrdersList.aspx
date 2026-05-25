@@ -14,8 +14,8 @@
         <p>
             &nbsp;</p>
         <asp:Button ID="btnAdd" runat="server" style="z-index: 1; left: 19px; top: 461px; position: absolute; width: 48px;" Text="Add" OnClick="btnAdd_Click" />
-        <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" style="z-index: 1; left: 53px; top: 568px; position: absolute; height: 28px" Text="Apply Filter" />
-        <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" style="z-index: 1; left: 209px; top: 567px; position: absolute; height: 28px;" Text="Clear Filter" />
+        <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" style="z-index: 1; left: 72px; top: 568px; position: absolute; height: 28px" Text="Apply Filter" />
+        <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" style="z-index: 1; left: 206px; top: 567px; position: absolute; height: 28px;" Text="Clear Filter" />
         <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" style="z-index: 1; left: 93px; top: 461px; position: absolute; width: 58px; right: 2337px;" Text="Edit" />
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 18px; top: 426px; position: absolute"></asp:Label>
         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="z-index: 1; left: 174px; top: 461px; position: absolute" Text="Delete" />

@@ -15,12 +15,13 @@ public partial class _1_List : System.Web.UI.Page
             DisplayOrders();
         }
     }
+
     void DisplayOrders()
     {
         clsOrdersCollection Orders = new clsOrdersCollection();
         lstOrdersList.DataSource = Orders.OrdersList;
         lstOrdersList.DataValueField = "OrderId";
-        lstOrdersList.DataTextField = "OrderDate";
+        lstOrdersList.DataTextField = "CustomerId";
         lstOrdersList.DataBind();
     }
 
