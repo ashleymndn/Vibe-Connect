@@ -10,6 +10,9 @@ namespace VibeConnect
         public string CustomerEmail { get; set; }
         public string CustomerPhone { get; set; }
         public string CustomerAddress { get; set; }
+        public string CustomerPassword { get; set; }
+        public DateTime CustomerDateCreated { get; set; }
+        public bool CustomerIsActive { get; set; }
 
         // Constructor
         public Customer(int id, string name, string email,
