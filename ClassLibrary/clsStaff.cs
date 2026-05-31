@@ -11,5 +11,18 @@ namespace ClassLibrary
         public Int32 StfSalary { get; set; }
         public DateTime StfDateJoined { get; set; }
         public Boolean StfIsActive { get; set; }
+
+        public bool Find(int StfID)
+        {
+            this.StfID = 21;
+            this.StfName = "Test Staff";
+            this.StfEmail = "teststaff@email.com";
+            this.StfRole = "Manager";
+            this.StfSalary = 25000;
+            this.StfDateJoined = Convert.ToDateTime("01/01/2024");
+            this.StfIsActive = true;
+
+            return true;
+        }
     }
 }
