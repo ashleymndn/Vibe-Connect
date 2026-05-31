@@ -81,7 +81,7 @@ namespace TestingStaff
         {
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
-            Int32 StfID = 21;
+            Int32 StfID = 1;
             Found = AStaff.Find(StfID);
             Assert.IsTrue(Found);
         }
@@ -92,11 +92,11 @@ namespace TestingStaff
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StfID = 21;
+            Int32 StfID = 1;
 
             Found = AStaff.Find(StfID);
 
-            if (AStaff.StfID != 21)
+            if (AStaff.StfID != 1)
             {
                 OK = false;
             }
@@ -110,7 +110,7 @@ namespace TestingStaff
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StfID = 21;
+            Int32 StfID = 1;
 
             Found = AStaff.Find(StfID);
 
@@ -128,7 +128,7 @@ namespace TestingStaff
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StfID = 21;
+            Int32 StfID = 1;
 
             Found = AStaff.Find(StfID);
 
@@ -146,7 +146,7 @@ namespace TestingStaff
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StfID = 21;
+            Int32 StfID = 1;
 
             Found = AStaff.Find(StfID);
 
@@ -164,7 +164,7 @@ namespace TestingStaff
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StfID = 21;
+            Int32 StfID = 1;
 
             Found = AStaff.Find(StfID);
 
@@ -182,7 +182,7 @@ namespace TestingStaff
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StfID = 21;
+            Int32 StfID = 1;
 
             Found = AStaff.Find(StfID);
 
@@ -200,7 +200,7 @@ namespace TestingStaff
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StfID = 21;
+            Int32 StfID = 1;
 
             Found = AStaff.Find(StfID);
 
