@@ -33,9 +33,10 @@ public class clsDataConnection
 
     private string GetConnectionString()
     {
-        return "Data Source=vibeconnectserver.database.windows.net;Initial Catalog=vibeconnectdb;User ID=vibeconnectadmin;Password=Admin@123;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        System.Net.WebClient client = new System.Net.WebClient();
+        string downloadString = client.DownloadString("http://localhost:5000/");
+        return downloadString;
     }
-
     public string GetDBName()
     {
 
