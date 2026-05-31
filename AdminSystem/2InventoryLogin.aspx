@@ -24,6 +24,7 @@
 
 </p>
 <p>
+    <a href="2InventoryList.aspx">2InventoryList.aspx</a>
     <asp:Button ID="BtnLogin" runat="server" OnClick="btnLogin_Click" style="z-index: 1; left: 75px; top: 236px; position: absolute; height: 31px" Text="Login" />
 </p>
 <p>
