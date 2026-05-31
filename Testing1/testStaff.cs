@@ -76,5 +76,141 @@ namespace TestingStaff
             AStaff.StfIsActive = TestData;
             Assert.AreEqual(AStaff.StfIsActive, TestData);
         }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsStaff AStaff = new clsStaff();
+            Boolean Found = false;
+            Int32 StfID = 21;
+            Found = AStaff.Find(StfID);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestStfIDFound()
+        {
+            clsStaff AStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StfID = 21;
+
+            Found = AStaff.Find(StfID);
+
+            if (AStaff.StfID != 21)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStfNameFound()
+        {
+            clsStaff AStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StfID = 21;
+
+            Found = AStaff.Find(StfID);
+
+            if (AStaff.StfName != "Test Staff")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStfEmailFound()
+        {
+            clsStaff AStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StfID = 21;
+
+            Found = AStaff.Find(StfID);
+
+            if (AStaff.StfEmail != "teststaff@email.com")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStfRoleFound()
+        {
+            clsStaff AStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StfID = 21;
+
+            Found = AStaff.Find(StfID);
+
+            if (AStaff.StfRole != "Manager")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStfSalaryFound()
+        {
+            clsStaff AStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StfID = 21;
+
+            Found = AStaff.Find(StfID);
+
+            if (AStaff.StfSalary != 25000)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStfDateJoinedFound()
+        {
+            clsStaff AStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StfID = 21;
+
+            Found = AStaff.Find(StfID);
+
+            if (AStaff.StfDateJoined != Convert.ToDateTime("01/01/2024"))
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStfIsActiveFound()
+        {
+            clsStaff AStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StfID = 21;
+
+            Found = AStaff.Find(StfID);
+
+            if (AStaff.StfIsActive != true)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
     }
-}
+    
+    }
