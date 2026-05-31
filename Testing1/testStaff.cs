@@ -7,6 +7,12 @@ namespace TestingStaff
     [TestClass]
     public class testStaff
     {
+        private string StfName = "Saarah Shaikh";
+        private string StfEmail = "saarah@vibeconnect.com";
+        private string StfRole = "Sales Assistant";
+        private string StfSalary = "3500";
+        private string StfDateJoined = DateTime.Now.Date.ToString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -76,13 +82,16 @@ namespace TestingStaff
             AStaff.StfIsActive = TestData;
             Assert.AreEqual(AStaff.StfIsActive, TestData);
         }
+
         [TestMethod]
         public void FindMethodOK()
         {
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Int32 StfID = 1;
+
             Found = AStaff.Find(StfID);
+
             Assert.IsTrue(Found);
         }
 
@@ -211,6 +220,66 @@ namespace TestingStaff
 
             Assert.IsTrue(OK);
         }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfNameMinLessOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfName = "";
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfNameMin()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfName = "A";
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfNameMax()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfName = "";
+            StfName = StfName.PadRight(100, 'A');
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfNameMaxPlusOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfName = "";
+            StfName = StfName.PadRight(101, 'A');
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreNotEqual(Error, "");
+        }
     }
-    
-    }
+}
