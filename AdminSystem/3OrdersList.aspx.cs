@@ -14,6 +14,13 @@ public partial class _1_List : System.Web.UI.Page
         {
             DisplayOrders();
         }
+
+        //create an instance of clsOrdersUser
+        clsOrdersUser AUser = new clsOrdersUser();
+        //get data from the session object
+        AUser = (clsOrdersUser)Session["AUser"];
+        //display the user name
+        Response.Write("Logged in as: " + AUser.UserName);
     }
 
     void DisplayOrders()
@@ -116,5 +123,11 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to the list
         lstOrdersList.DataBind();
 
+    }
+
+    protected void btnReturn_Click(object sender, EventArgs e)
+    {
+        //redirect user to the orders login page
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
