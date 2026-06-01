@@ -32,6 +32,20 @@ namespace ClassLibrary
             set { mThisStaff = value; }
         }
 
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@StfName", mThisStaff.StfName);
+            DB.AddParameter("@StfEmail", mThisStaff.StfEmail);
+            DB.AddParameter("@StfRole", mThisStaff.StfRole);
+            DB.AddParameter("@StfSalary", mThisStaff.StfSalary);
+            DB.AddParameter("@StfDateJoined", mThisStaff.StfDateJoined);
+            DB.AddParameter("@StfIsActive", mThisStaff.StfIsActive);
+
+            return DB.Execute("sproc_tblStaff_Insert");
+        }
+
         void PopulateArray(clsDataConnection DB)
         {
             Int32 Index = 0;

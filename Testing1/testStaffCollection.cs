@@ -75,5 +75,36 @@ namespace TestingStaff
 
             Assert.AreEqual(AllStaff.Count, TestList.Count);
         }
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+
+            TestItem.StfName = "Add Test Staff";
+            TestItem.StfEmail = "addtest@vibeconnect.com";
+            TestItem.StfRole = "Assistant";
+            TestItem.StfSalary = 4000;
+            TestItem.StfDateJoined = DateTime.Now.Date;
+            TestItem.StfIsActive = true;
+
+            AllStaff.ThisStaff = TestItem;
+
+            PrimaryKey = AllStaff.Add();
+
+            TestItem.StfID = PrimaryKey;
+
+            AllStaff.ThisStaff.Find(PrimaryKey);
+
+            Assert.AreEqual(AllStaff.ThisStaff.StfID, TestItem.StfID);
+            Assert.AreEqual(AllStaff.ThisStaff.StfName, TestItem.StfName);
+            Assert.AreEqual(AllStaff.ThisStaff.StfEmail, TestItem.StfEmail);
+            Assert.AreEqual(AllStaff.ThisStaff.StfRole, TestItem.StfRole);
+            Assert.AreEqual(AllStaff.ThisStaff.StfSalary, TestItem.StfSalary);
+            Assert.AreEqual(AllStaff.ThisStaff.StfDateJoined.Date, TestItem.StfDateJoined.Date);
+            Assert.AreEqual(AllStaff.ThisStaff.StfIsActive, TestItem.StfIsActive);
+        }
     }
 }
