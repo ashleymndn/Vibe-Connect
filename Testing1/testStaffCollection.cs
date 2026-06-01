@@ -31,6 +31,7 @@ namespace TestingStaff
             TestItem.StfIsActive = true;
 
             TestList.Add(TestItem);
+
             AllStaff.StaffList = TestList;
 
             Assert.AreEqual(AllStaff.StaffList, TestList);
@@ -71,6 +72,7 @@ namespace TestingStaff
             TestItem.StfIsActive = true;
 
             TestList.Add(TestItem);
+
             AllStaff.StaffList = TestList;
 
             Assert.AreEqual(AllStaff.Count, TestList.Count);
@@ -95,6 +97,47 @@ namespace TestingStaff
             PrimaryKey = AllStaff.Add();
 
             TestItem.StfID = PrimaryKey;
+
+            AllStaff.ThisStaff.Find(PrimaryKey);
+
+            Assert.AreEqual(AllStaff.ThisStaff.StfID, TestItem.StfID);
+            Assert.AreEqual(AllStaff.ThisStaff.StfName, TestItem.StfName);
+            Assert.AreEqual(AllStaff.ThisStaff.StfEmail, TestItem.StfEmail);
+            Assert.AreEqual(AllStaff.ThisStaff.StfRole, TestItem.StfRole);
+            Assert.AreEqual(AllStaff.ThisStaff.StfSalary, TestItem.StfSalary);
+            Assert.AreEqual(AllStaff.ThisStaff.StfDateJoined.Date, TestItem.StfDateJoined.Date);
+            Assert.AreEqual(AllStaff.ThisStaff.StfIsActive, TestItem.StfIsActive);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+
+            TestItem.StfName = "Update Test Staff";
+            TestItem.StfEmail = "updatetest@vibeconnect.com";
+            TestItem.StfRole = "Supervisor";
+            TestItem.StfSalary = 5000;
+            TestItem.StfDateJoined = DateTime.Now.Date;
+            TestItem.StfIsActive = true;
+
+            AllStaff.ThisStaff = TestItem;
+
+            PrimaryKey = AllStaff.Add();
+
+            TestItem.StfID = PrimaryKey;
+            TestItem.StfName = "Updated Staff";
+            TestItem.StfEmail = "updatedstaff@vibeconnect.com";
+            TestItem.StfRole = "Manager";
+            TestItem.StfSalary = 6000;
+            TestItem.StfDateJoined = DateTime.Now.Date;
+            TestItem.StfIsActive = false;
+
+            AllStaff.ThisStaff = TestItem;
+
+            AllStaff.Update();
 
             AllStaff.ThisStaff.Find(PrimaryKey);
 

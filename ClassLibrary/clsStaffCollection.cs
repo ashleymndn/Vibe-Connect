@@ -46,7 +46,22 @@ namespace ClassLibrary
             return DB.Execute("sproc_tblStaff_Insert");
         }
 
-        void PopulateArray(clsDataConnection DB)
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@StfID", mThisStaff.StfID);
+            DB.AddParameter("@StfName", mThisStaff.StfName);
+            DB.AddParameter("@StfEmail", mThisStaff.StfEmail);
+            DB.AddParameter("@StfRole", mThisStaff.StfRole);
+            DB.AddParameter("@StfSalary", mThisStaff.StfSalary);
+            DB.AddParameter("@StfDateJoined", mThisStaff.StfDateJoined);
+            DB.AddParameter("@StfIsActive", mThisStaff.StfIsActive);
+
+            DB.Execute("sproc_tblStaff_Update");
+        }
+
+        private void PopulateArray(clsDataConnection DB)
         {
             Int32 Index = 0;
             Int32 RecordCount = DB.Count;
@@ -66,6 +81,7 @@ namespace ClassLibrary
                 AStaff.StfIsActive = Convert.ToBoolean(DB.DataTable.Rows[Index]["StfIsActive"]);
 
                 mStaffList.Add(AStaff);
+
                 Index++;
             }
         }
