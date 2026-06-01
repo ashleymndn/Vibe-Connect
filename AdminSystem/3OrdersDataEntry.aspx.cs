@@ -149,4 +149,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtOrderStatus.Text = OrdersBook.ThisOrder.OrderStatus;
         chkIsDelivered.Checked = OrdersBook.ThisOrder.IsDelivered;
     }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        //redirect user to the orders login page
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }
