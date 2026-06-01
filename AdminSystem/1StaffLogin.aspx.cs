@@ -29,11 +29,17 @@ public partial class _1StaffLogin : System.Web.UI.Page
         }
         else if (Found == true)
         {
+            Session["AnUser"] = AnUser;
             Response.Redirect("1StaffList.aspx");
         }
         else
         {
             lblError.Text = "Login details are incorrect. Please try again.";
         }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
