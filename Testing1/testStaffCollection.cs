@@ -149,5 +149,34 @@ namespace TestingStaff
             Assert.AreEqual(AllStaff.ThisStaff.StfDateJoined.Date, TestItem.StfDateJoined.Date);
             Assert.AreEqual(AllStaff.ThisStaff.StfIsActive, TestItem.StfIsActive);
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+
+            TestItem.StfName = "Delete Test";
+            TestItem.StfEmail = "delete@test.com";
+            TestItem.StfRole = "Tester";
+            TestItem.StfSalary = 3000;
+            TestItem.StfDateJoined = DateTime.Now.Date;
+            TestItem.StfIsActive = true;
+
+            AllStaff.ThisStaff = TestItem;
+
+            PrimaryKey = AllStaff.Add();
+
+            TestItem.StfID = PrimaryKey;
+
+            AllStaff.ThisStaff.Find(PrimaryKey);
+
+            AllStaff.Delete();
+
+            Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+
+            Assert.IsFalse(Found);
+        }
     }
 }

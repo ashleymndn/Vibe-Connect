@@ -61,6 +61,15 @@ namespace ClassLibrary
             DB.Execute("sproc_tblStaff_Update");
         }
 
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@StfID", mThisStaff.StfID);
+
+            DB.Execute("sproc_tblStaff_Delete");
+        }
+
         private void PopulateArray(clsDataConnection DB)
         {
             Int32 Index = 0;
@@ -81,7 +90,6 @@ namespace ClassLibrary
                 AStaff.StfIsActive = Convert.ToBoolean(DB.DataTable.Rows[Index]["StfIsActive"]);
 
                 mStaffList.Add(AStaff);
-
                 Index++;
             }
         }
