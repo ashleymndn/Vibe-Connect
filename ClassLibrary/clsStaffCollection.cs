@@ -70,6 +70,17 @@ namespace ClassLibrary
             DB.Execute("sproc_tblStaff_Delete");
         }
 
+        public void ReportByRole(string StfRole)
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@StfRole", StfRole);
+
+            DB.Execute("sproc_tblStaff_FilterByRole");
+
+            PopulateArray(DB);
+        }
+
         private void PopulateArray(clsDataConnection DB)
         {
             Int32 Index = 0;

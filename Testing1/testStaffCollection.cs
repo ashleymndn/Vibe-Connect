@@ -31,7 +31,6 @@ namespace TestingStaff
             TestItem.StfIsActive = true;
 
             TestList.Add(TestItem);
-
             AllStaff.StaffList = TestList;
 
             Assert.AreEqual(AllStaff.StaffList, TestList);
@@ -72,7 +71,6 @@ namespace TestingStaff
             TestItem.StfIsActive = true;
 
             TestList.Add(TestItem);
-
             AllStaff.StaffList = TestList;
 
             Assert.AreEqual(AllStaff.Count, TestList.Count);
@@ -93,11 +91,9 @@ namespace TestingStaff
             TestItem.StfIsActive = true;
 
             AllStaff.ThisStaff = TestItem;
-
             PrimaryKey = AllStaff.Add();
 
             TestItem.StfID = PrimaryKey;
-
             AllStaff.ThisStaff.Find(PrimaryKey);
 
             Assert.AreEqual(AllStaff.ThisStaff.StfID, TestItem.StfID);
@@ -124,7 +120,6 @@ namespace TestingStaff
             TestItem.StfIsActive = true;
 
             AllStaff.ThisStaff = TestItem;
-
             PrimaryKey = AllStaff.Add();
 
             TestItem.StfID = PrimaryKey;
@@ -136,7 +131,6 @@ namespace TestingStaff
             TestItem.StfIsActive = false;
 
             AllStaff.ThisStaff = TestItem;
-
             AllStaff.Update();
 
             AllStaff.ThisStaff.Find(PrimaryKey);
@@ -165,11 +159,9 @@ namespace TestingStaff
             TestItem.StfIsActive = true;
 
             AllStaff.ThisStaff = TestItem;
-
             PrimaryKey = AllStaff.Add();
 
             TestItem.StfID = PrimaryKey;
-
             AllStaff.ThisStaff.Find(PrimaryKey);
 
             AllStaff.Delete();
@@ -177,6 +169,53 @@ namespace TestingStaff
             Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
 
             Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByRoleMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+
+            FilteredStaff.ReportByRole("");
+
+            Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByRoleNoneFound()
+        {
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+
+            FilteredStaff.ReportByRole("xxxxx");
+
+            Assert.AreEqual(0, FilteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByRoleTestDataFound()
+        {
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            Boolean OK = true;
+
+            FilteredStaff.ReportByRole("FilterTestRole");
+
+            if (FilteredStaff.Count != 2)
+            {
+                OK = false;
+            }
+
+            if (FilteredStaff.StaffList[0].StfRole != "FilterTestRole")
+            {
+                OK = false;
+            }
+
+            if (FilteredStaff.StaffList[1].StfRole != "FilterTestRole")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
         }
     }
 }
