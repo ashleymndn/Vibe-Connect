@@ -14,15 +14,38 @@ public partial class _1_List : System.Web.UI.Page
         {
             DisplayOrders();
         }
+
+        //create an instance of clsOrdersUser
+        clsOrdersUser AUser = new clsOrdersUser();
+        //get data from the session object
+        AUser = (clsOrdersUser)Session["AUser"];
+        //display the user name
+        Response.Write("Logged in as: " + AUser.UserName);
     }
 
     void DisplayOrders()
     {
         clsOrdersCollection Orders = new clsOrdersCollection();
-        lstOrdersList.DataSource = Orders.OrdersList;
-        lstOrdersList.DataValueField = "OrderId";
-        lstOrdersList.DataTextField = "CustomerId";
-        lstOrdersList.DataBind();
+
+        lstOrdersList.Items.Clear();
+
+        foreach (clsOrders AnOrder in Orders.OrdersList)
+        {
+            ListItem Item = new ListItem();
+
+            Item.Value = AnOrder.OrderId.ToString();
+
+            Item.Text =
+                AnOrder.OrderId + " | " +
+                AnOrder.CustomerId + " | " +
+                AnOrder.OrderDate.ToShortDateString() + " | " +
+                AnOrder.Total + " | " +
+                AnOrder.Address + " | " +
+                AnOrder.OrderStatus + " | " +
+                AnOrder.IsDelivered;
+
+            lstOrdersList.Items.Add(Item);
+        }
     }
 
 
@@ -100,5 +123,11 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to the list
         lstOrdersList.DataBind();
 
+    }
+
+    protected void btnReturn_Click(object sender, EventArgs e)
+    {
+        //redirect user to the orders login page
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
