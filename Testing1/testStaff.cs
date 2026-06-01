@@ -501,5 +501,229 @@ namespace TestingStaff
 
             Assert.AreNotEqual(Error, "");
         }
+        [TestMethod]
+        public void StfNameMinPlusOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfName = "AA";
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfNameMaxLessOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfName = "";
+            StfName = StfName.PadRight(99, 'A');
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfNameMid()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfName = "";
+            StfName = StfName.PadRight(50, 'A');
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfNameExtremeMax()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfName = "";
+            StfName = StfName.PadRight(500, 'A');
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfEmailMinPlusOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfEmail = "ab@b.com";
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfEmailMaxLessOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfEmail = "a@";
+            StfEmail = StfEmail.PadRight(99, 'a');
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfEmailMid()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfEmail = "staff";
+            StfEmail = StfEmail.PadRight(45, 'a') + "@email.com";
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfEmailExtremeMax()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfEmail = "a@";
+            StfEmail = StfEmail.PadRight(500, 'a');
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfRoleMinPlusOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfRole = "AA";
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfRoleMaxLessOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfRole = "";
+            StfRole = StfRole.PadRight(49, 'A');
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfRoleMid()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfRole = "";
+            StfRole = StfRole.PadRight(25, 'A');
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfRoleExtremeMax()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfRole = "";
+            StfRole = StfRole.PadRight(500, 'A');
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfSalaryMin()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfSalary = "0";
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfSalaryMax()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfSalary = "1000000";
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfSalaryMaxPlusOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfSalary = "1000001";
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfDateJoinedMinLessOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfDateJoined = DateTime.Now.Date.AddYears(-51).ToString();
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfDateJoinedMin()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfDateJoined = DateTime.Now.Date.AddYears(-50).ToString();
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StfDateJoinedMinPlusOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            string Error = "";
+            string StfDateJoined = DateTime.Now.Date.AddYears(-49).ToString();
+
+            Error = AStaff.Valid(StfName, StfEmail, StfRole, StfSalary, StfDateJoined);
+
+            Assert.AreEqual(Error, "");
+        }
     }
 }
