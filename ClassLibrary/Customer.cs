@@ -14,6 +14,10 @@ namespace VibeConnect
         public DateTime CustomerDateCreated { get; set; }
         public bool CustomerIsActive { get; set; }
 
+        public Customer()
+{
+}
+
         // Constructor
         public Customer(int id, string name, string email,
                         string phone, string address)
