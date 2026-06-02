@@ -28,6 +28,7 @@
         <div>
             <asp:Label ID="ProductIdlbl" runat="server" style="z-index: 1; left: 10px; top: 83px; position: absolute; height: 28px; width: 130px; right: 1760px;" Text="Label">ProductId</asp:Label>
             <asp:TextBox ID="ProductIdTextBox" runat="server" OnTextChanged="ProductId_TextChanged" style="z-index: 1; left: 194px; top: 84px; position: absolute; width: 92px; height: 27px"></asp:TextBox>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 344px; top: 40px; position: absolute; width: 85px; height: 30px" Text="Find" />
             <br/>
 
         </div>
@@ -53,11 +54,13 @@
             <asp:TextBox ID="LastUpdatedTextBox" runat="server" OnTextChanged="LastUpdated_TextChanged" style="z-index: 1; left: 194px; top: 267px; position: absolute; width: 92px; height: 27px"></asp:TextBox>
            
         </div>
+      
         <div>
             <asp:Label ID="StockStatuslbl" runat="server" style="z-index: 1; left: 10px; top: 319px; position: absolute; height: 28px; width: 130px; right: 1691px;" Text="Label">StockStatus</asp:Label>
             <asp:TextBox ID="StockStatusTextBox" runat="server" OnTextChanged="StockStatus_TextChanged" style="z-index: 1; top: 314px; position: absolute; width: 92px; height: 27px; left: 194px"></asp:TextBox>
             
         </div>
+        
         <div>   
            <p> 
                <asp:CheckBox ID="chkActive" Text="Active" runat="server" OnCheckedChanged="Active_CheckedChanged" style="z-index: 1; left: 193px; top: 371px; position: absolute; width: 92px" />
@@ -65,7 +68,7 @@
            </p>
             <asp:Label ID="lblError"  runat="server" style="z-index: 1; left: 24px; top: 434px; position: absolute" Text=""></asp:Label>
         </div>
-       
+        
             <asp:Button ID="btnOk" runat="server" OnClick="btnOk_Click" style="z-index: 1; left: 13px; top: 469px; position: absolute; height: 28px; width: 41px;" Text="OK" />
        
         
@@ -73,6 +76,11 @@
        
         
        </div>
+       
+        
+            <p>
+                &nbsp;</p>
+            <asp:Button ID="btnMainMenu" runat="server" OnClick="btnMainMenu_Click" style="z-index: 1; left: 186px; top: 469px; position: absolute; height: 32px; width: 198px" Text="Return To Main Menu" />
        
         
     </form>

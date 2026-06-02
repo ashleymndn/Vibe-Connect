@@ -37,7 +37,6 @@ public class clsDataConnection
         string downloadString = client.DownloadString("http://localhost:5000/");
         return downloadString;
     }
-
     public string GetDBName()
     {
 
