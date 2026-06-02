@@ -7,8 +7,9 @@
     <title></title>
 </head>
 <body style="height: 439px">
-    This is the Order Data Entry Page
     <form id="form1" runat="server">
+        <asp:Button ID="btnMainMenu" runat="server" OnClick="btnMainMenu_Click" style="z-index: 1; left: 423px; top: 397px; position: absolute" Text="Return to Main Menu" />
+    This is the Order Data Entry Page
         <div>
             <asp:Label ID="lblOrderId" runat="server" style="z-index: 1; left: 25px; top: 63px; position: absolute; height: 22px" Text="Order Id" width="119px"></asp:Label>
             <asp:TextBox ID="txtOrderId" runat="server" style="z-index: 1; left: 148px; top: 61px; position: absolute; width: 193px"></asp:TextBox>

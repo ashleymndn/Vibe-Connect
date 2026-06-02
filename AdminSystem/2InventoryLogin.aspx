@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="2InventoryLogin.aspx.cs" Inherits="_2InventoryLogin" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="2InventoryLogin.aspx.cs" Inherits="_2InventoryLogin" %>
 
 <!DOCTYPE html>
 
@@ -37,6 +37,7 @@
                 style="z-index:1; left:195px; top:156px; position:absolute; height:23px; width:143px">
             </asp:TextBox>
 
+
             <asp:Label ID="lblError" runat="server"
                 ForeColor="Red"
                 style="z-index:1; left:395px; top:155px; position:absolute">
@@ -53,6 +54,16 @@
                 OnClick="btnCancel_Click"
                 style="z-index:1; left:208px; top:234px; position:absolute; height:35px; width:78px">
             </asp:Button>
+=======
+</p>
+<p>
+    <a href="2InventoryList.aspx">2InventoryList.aspx</a>
+    <asp:Button ID="BtnLogin" runat="server" OnClick="btnLogin_Click" style="z-index: 1; left: 75px; top: 236px; position: absolute; height: 31px" Text="Login" />
+</p>
+<p>
+    <asp:Button ID="BtnCancel" runat="server" OnClick="btnCancel_Click" style="z-index: 1; left: 208px; top: 234px; position: absolute; height: 35px; width: 78px" Text="Cancel" />
+</p>
+
 
         </div>
 

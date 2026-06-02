@@ -43,6 +43,12 @@ public partial class _Default : System.Web.UI.Page
                 //show error
                 lblError.Text = "Login details are incorrect. Please try again.";
             }
+
         }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
     }
 }
