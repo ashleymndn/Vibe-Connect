@@ -14,7 +14,7 @@ public partial class TeamMainMenu : System.Web.UI.Page
 
     protected void btnInventory_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("2InventoryLogin.aspx");
     }
 
     protected void btnOrders_Click(object sender, EventArgs e)
