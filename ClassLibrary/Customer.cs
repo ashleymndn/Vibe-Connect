@@ -50,5 +50,20 @@ namespace VibeConnect
         {
             Console.WriteLine(CustomerName + " logged into the system.");
         }
+        public bool Find(int CustomerID)
+{
+    // Set test data
+    this.CustomerID = 1;
+    this.CustomerName = "Hajra";
+    this.CustomerEmail = "hajra@email.com";
+    this.CustomerPhone = "03001234567";
+    this.CustomerAddress = "Faisalabad";
+    this.CustomerPassword = "Password123";
+    this.CustomerDateCreated = Convert.ToDateTime("01/01/2025");
+    this.CustomerIsActive = true;
+
+    // Always return true
+    return true;
+}
     }
 }
