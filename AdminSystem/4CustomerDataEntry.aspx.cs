@@ -13,24 +13,60 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
     protected void btnOK_Click(object sender, EventArgs e)
-    {
-         // Create a new customer object
+{
+    // Create an instance of the Customer class
     Customer ACustomer = new Customer();
 
-    // Capture values from the form
-    ACustomer.CustomerName = txtCustomerName.Text;
-    ACustomer.CustomerEmail = txtCustomerEmail.Text;
-    ACustomer.CustomerPhone = txtCustomerPhone.Text;
-    ACustomer.CustomerAddress = txtCustomerAddress.Text;
-    ACustomer.CustomerPassword = txtCustomerPassword.Text;
-    ACustomer.CustomerIsActive = chkCustomerIsActive.Checked;
+    // Variables for validation
+    string CustomerName;
+    string CustomerEmail;
+    string CustomerPhone;
+    string CustomerAddress;
+    string CustomerPassword;
+    string CustomerDateCreated;
 
-    // Store customer object in Session
-    Session["ACustomer"] = ACustomer;
+    string Error;
 
-    // Navigate to the viewer page
-    Response.Redirect("4CustomerViewer.aspx");
+    // Capture data from the form
+    CustomerName = txtCustomerName.Text;
+    CustomerEmail = txtCustomerEmail.Text;
+    CustomerPhone = txtCustomerPhone.Text;
+    CustomerAddress = txtCustomerAddress.Text;
+    CustomerPassword = txtCustomerPassword.Text;
+
+    // We don't currently have a date textbox, so use today's date
+    CustomerDateCreated = DateTime.Now.Date.ToString();
+
+    // Validate the data
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    // If there are no errors
+    if (Error == "")
+    {
+        ACustomer.CustomerName = CustomerName;
+        ACustomer.CustomerEmail = CustomerEmail;
+        ACustomer.CustomerPhone = CustomerPhone;
+        ACustomer.CustomerAddress = CustomerAddress;
+        ACustomer.CustomerPassword = CustomerPassword;
+        ACustomer.CustomerIsActive = chkCustomerIsActive.Checked;
+        ACustomer.CustomerDateCreated = Convert.ToDateTime(CustomerDateCreated);
+
+        Session["ACustomer"] = ACustomer;
+
+        Response.Redirect("4CustomerViewer.aspx");
     }
+    else
+    {
+        // Display the error message
+        lblError.Text = Error;
+    }
+}
     protected void btnFind_Click(object sender, EventArgs e)
 {
     // Create an instance of the customer class
