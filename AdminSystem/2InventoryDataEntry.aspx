@@ -78,6 +78,11 @@
        </div>
        
         
+            <p>
+                &nbsp;</p>
+            <asp:Button ID="btnMainMenu" runat="server" OnClick="btnMainMenu_Click" style="z-index: 1; left: 186px; top: 469px; position: absolute; height: 32px; width: 198px" Text="Return To Main Menu" />
+       
+        
     </form>
 </body>
 </html>

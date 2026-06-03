@@ -205,8 +205,6 @@ namespace Testing3
         {
             //create an instance of filtered data
             clsOrdersCollection FilteredOrders = new clsOrdersCollection();
-            //variable to store the outcome
-            Boolean OK = true;
             //apply the order status that doesn't exist
             FilteredOrders.ReportByOrderStatus("Pending");
             //check that the corrct number of records are found

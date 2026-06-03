@@ -41,7 +41,7 @@
         }
     </style>
 </head>
-<body>
+<body style="height: 173px">
     <form id="form1" runat="server">
         <div>
             <h2>VibeConnect Main Menu</h2>
