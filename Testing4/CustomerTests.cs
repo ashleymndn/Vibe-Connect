@@ -313,7 +313,7 @@ public void TestCustomerPasswordFound()
 
     Found = ACustomer.Find(CustomerID);
 
-    if (ACustomer.CustomerPassword != "Password123")
+    if (ACustomer.CustomerPassword != "Password123!")
     {
         OK = false;
     }
@@ -332,7 +332,7 @@ public void TestCustomerDateCreatedFound()
 
     Found = ACustomer.Find(CustomerID);
 
-    if (ACustomer.CustomerDateCreated != Convert.ToDateTime("01/01/2025"))
+    if (ACustomer.CustomerDateCreated != Convert.ToDateTime("2026-05-26 22:01:54.960"))
     {
         OK = false;
     }

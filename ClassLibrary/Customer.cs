@@ -52,18 +52,34 @@ namespace VibeConnect
         }
         public bool Find(int CustomerID)
 {
-    // Set test data
-    this.CustomerID = 1;
-    this.CustomerName = "Hajra";
-    this.CustomerEmail = "hajra@email.com";
-    this.CustomerPhone = "03001234567";
-    this.CustomerAddress = "Faisalabad";
-    this.CustomerPassword = "Password123";
-    this.CustomerDateCreated = Convert.ToDateTime("01/01/2025");
-    this.CustomerIsActive = true;
+   // Create an instance of the data connection
+    clsDataConnection DB = new clsDataConnection();
 
-    // Always return true
-    return true;
+    // Add the parameter for the primary key
+    DB.AddParameter("@CustomerId", CustomerID);
+
+    // Execute the stored procedure
+    DB.Execute("sproc_tblCustomer_FilterByCustomerID");
+
+    // If one record is found
+    if (DB.Count == 1)
+    {
+        // Copy the data from the database
+        this.CustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+        this.CustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
+        this.CustomerPassword = Convert.ToString(DB.DataTable.Rows[0]["CustomerPassword"]);
+        this.CustomerAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
+        this.CustomerDateCreated = Convert.ToDateTime(DB.DataTable.Rows[0]["CustomeDateCreated"]);
+        this.CustomerIsActive = Convert.ToBoolean(DB.DataTable.Rows[0]["CustomerIsActive"]);
+        this.CustomerEmail = Convert.ToString(DB.DataTable.Rows[0]["CustomerEmail"]);
+        this.CustomerPhone = Convert.ToString(DB.DataTable.Rows[0]["CustomerPhone"]);
+
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
     }
 }
