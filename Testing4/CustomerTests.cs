@@ -216,7 +216,398 @@ public void CustomerDateCreatedInvalidData()
 
     Assert.AreNotEqual(Error, "");
 }
+[TestMethod]
+public void CustomerEmailMinLessOne()
+{
+    Customer ACustomer = new Customer();
 
+    string Error = "";
+
+    string CustomerEmail = "";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
+[TestMethod]
+public void CustomerEmailMin()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerEmail = "A";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerEmailMid()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerEmail = "";
+    CustomerEmail = CustomerEmail.PadRight(100, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerEmailMax()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerEmail = "";
+    CustomerEmail = CustomerEmail.PadRight(200, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerEmailMaxPlusOne()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerEmail = "";
+    CustomerEmail = CustomerEmail.PadRight(201, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
+[TestMethod]
+public void CustomerPhoneMinLessOne()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerPhone = "";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
+[TestMethod]
+public void CustomerPhoneMin()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerPhone = "A";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerPhoneMid()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerPhone = "";
+    CustomerPhone = CustomerPhone.PadRight(20, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerPhoneMax()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerPhone = "";
+    CustomerPhone = CustomerPhone.PadRight(40, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerPhoneMaxPlusOne()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerPhone = "";
+    CustomerPhone = CustomerPhone.PadRight(41, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
+[TestMethod]
+public void CustomerAddressMinLessOne()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerAddress = "";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
+[TestMethod]
+public void CustomerAddressMin()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerAddress = "A";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerAddressMid()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerAddress = "";
+    CustomerAddress = CustomerAddress.PadRight(150, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerAddressMax()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerAddress = "";
+    CustomerAddress = CustomerAddress.PadRight(300, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerAddressMaxPlusOne()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerAddress = "";
+    CustomerAddress = CustomerAddress.PadRight(301, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
+[TestMethod]
+public void CustomerPasswordMinLessOne()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerPassword = "";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
+[TestMethod]
+public void CustomerPasswordMin()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerPassword = "A";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerPasswordMid()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerPassword = "";
+    CustomerPassword = CustomerPassword.PadRight(127, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerPasswordMax()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerPassword = "";
+    CustomerPassword = CustomerPassword.PadRight(255, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerPasswordMaxPlusOne()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerPassword = "";
+    CustomerPassword = CustomerPassword.PadRight(256, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
 
     [TestMethod]
 public void ValidMethodOK()
