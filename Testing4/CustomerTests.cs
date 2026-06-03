@@ -7,6 +7,235 @@ namespace Testing4
     [TestClass]
     public class CustomerTests
     {
+        // good test data
+    string CustomerName = "Hajra";
+    string CustomerEmail = "hajra@email.com";
+    string CustomerPhone = "03001234567";
+    string CustomerAddress = "Faisalabad";
+    string CustomerPassword = "Password123!";
+    string CustomerDateCreated = DateTime.Now.Date.ToString();
+
+    [TestMethod]
+public void CustomerNameMinLessOne()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerName = "";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
+[TestMethod]
+public void CustomerNameMin()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerName = "A";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerNameMaxPlusOne()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerName = "";
+    CustomerName = CustomerName.PadRight(51, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
+[TestMethod]
+public void CustomerNameMax()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerName = "";
+    CustomerName = CustomerName.PadRight(50, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerNameMinPlusOne()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerName = "AA";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerNameMaxLessOne()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerName = "";
+    CustomerName = CustomerName.PadRight(49, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerNameMid()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerName = "";
+    CustomerName = CustomerName.PadRight(25, 'A');
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerDateCreatedExtremeMin()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    DateTime TestDate;
+    TestDate = DateTime.Now.Date;
+    TestDate = TestDate.AddYears(-100);
+
+    string CustomerDateCreated = TestDate.ToString();
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
+[TestMethod]
+public void CustomerDateCreatedMin()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    DateTime TestDate;
+    TestDate = DateTime.Now.Date;
+
+    string CustomerDateCreated = TestDate.ToString();
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+[TestMethod]
+public void CustomerDateCreatedInvalidData()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    string CustomerDateCreated = "This is not a date";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreNotEqual(Error, "");
+}
+
+
+    [TestMethod]
+public void ValidMethodOK()
+{
+    Customer ACustomer = new Customer();
+
+    string Error = "";
+
+    Error = ACustomer.Valid(
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CustomerAddress,
+        CustomerPassword,
+        CustomerDateCreated);
+
+    Assert.AreEqual(Error, "");
+}
+
         [TestMethod]
 public void InstanceOK()
 

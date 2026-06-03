@@ -8,3 +8,4 @@ BEGIN
 END
 
 EXEC sproc_tblCustomer_FilterByCustomerID 1;
+sp_help tblCustomer
