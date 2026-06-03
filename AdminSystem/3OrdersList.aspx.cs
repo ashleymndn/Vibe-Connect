@@ -12,7 +12,8 @@ public partial class _1_List : System.Web.UI.Page
     {
         if (IsPostBack == false)
         {
-            DisplayOrders();
+            clsOrdersCollection Orders = new clsOrdersCollection();
+            DisplayOrders(Orders);
         }
 
         //create an instance of clsOrdersUser
@@ -23,14 +24,12 @@ public partial class _1_List : System.Web.UI.Page
         Response.Write("Logged in as: " + AUser.UserName);
     }
 
-    void DisplayOrders()
+    void DisplayOrders(clsOrdersCollection Orders)
     {
-        clsOrdersCollection Orders = new clsOrdersCollection();
-
         lstOrdersList.Items.Clear();
 
         foreach (clsOrders AnOrder in Orders.OrdersList)
-        {
+        { 
             ListItem Item = new ListItem();
 
             Item.Value = AnOrder.OrderId.ToString();
@@ -102,10 +101,8 @@ public partial class _1_List : System.Web.UI.Page
         lstOrdersList.DataSource = AnOrder.OrdersList;
         //set the name of the primary key
         lstOrdersList.DataValueField = "OrderId";
-        //set the name of the field to display
-        lstOrdersList.DataTextField = "OrderStatus";
-        //bind the data to the list
-        lstOrdersList.DataBind();
+        //display fields
+        DisplayOrders(AnOrder);
     }
 
     protected void btnClearFilter_Click(object sender, EventArgs e)
@@ -116,12 +113,8 @@ public partial class _1_List : System.Web.UI.Page
         AnOrder.ReportByOrderStatus("");
         //clear any existing filter to tidy up the interface
         txtFilter.Text = "";
-        //set the data source to the list of orders in the collection
-        lstOrdersList.DataSource = AnOrder.OrdersList;
-        //set the name of the field to display
-        lstOrdersList.DataTextField = "OrderStatus";
-        //bind the data to the list
-        lstOrdersList.DataBind();
+        //display fields
+        DisplayOrders(AnOrder);
 
     }
 
