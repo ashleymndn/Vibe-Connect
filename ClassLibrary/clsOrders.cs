@@ -156,10 +156,6 @@ namespace ClassLibrary
             {
                 DateTemp = Convert.ToDateTime(orderDate);
 
-                if (DateTemp < DateComp)
-                {
-                    Error = Error + "The date cannnot be in the past : ";
-                }
                 if (DateTemp > DateComp)
                 {
                     Error = Error + "The date cannnot be in the future : ";
