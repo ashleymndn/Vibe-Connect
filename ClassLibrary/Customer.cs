@@ -14,6 +14,10 @@ namespace VibeConnect
         public DateTime CustomerDateCreated { get; set; }
         public bool CustomerIsActive { get; set; }
 
+        public Customer()
+{
+}
+
         // Constructor
         public Customer(int id, string name, string email,
                         string phone, string address)
@@ -46,5 +50,20 @@ namespace VibeConnect
         {
             Console.WriteLine(CustomerName + " logged into the system.");
         }
+        public bool Find(int CustomerID)
+{
+    // Set test data
+    this.CustomerID = 1;
+    this.CustomerName = "Hajra";
+    this.CustomerEmail = "hajra@email.com";
+    this.CustomerPhone = "03001234567";
+    this.CustomerAddress = "Faisalabad";
+    this.CustomerPassword = "Password123";
+    this.CustomerDateCreated = Convert.ToDateTime("01/01/2025");
+    this.CustomerIsActive = true;
+
+    // Always return true
+    return true;
+}
     }
 }

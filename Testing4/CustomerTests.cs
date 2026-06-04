@@ -157,6 +157,207 @@ public void CustomerIDPropertyOK()
 
     Assert.AreEqual(ACustomer.CustomerID, TestData);
 }
+[TestMethod]
+public void FindMethodOK()
+{
+    // Create an instance of the class
+    Customer ACustomer = new Customer();
+
+    // Create a Boolean variable to store the result
+    Boolean Found = false;
+
+    // Create some test data
+    Int32 CustomerID = 1;
+
+    // Invoke the method
+    Found = ACustomer.Find(CustomerID);
+
+    // Test to see if the result is true
+    Assert.IsTrue(Found);
+}
+
+[TestMethod]
+public void TestCustomerIDFound()
+{
+    // Create an instance of the class
+    Customer ACustomer = new Customer();
+
+    // Create Boolean variables
+    Boolean Found = false;
+    Boolean OK = true;
+
+    // Test data
+    Int32 CustomerID = 1;
+
+    // Invoke method
+    Found = ACustomer.Find(CustomerID);
+
+    // Check CustomerID property
+    if (ACustomer.CustomerID != 1)
+    {
+        OK = false;
+    }
+
+    // Test result
+    Assert.IsTrue(OK);
+}
+[TestMethod]
+public void TestCustomerNameFound()
+{
+    // Create an instance of the class
+    Customer ACustomer = new Customer();
+
+    // Create Boolean variables
+    Boolean Found = false;
+    Boolean OK = true;
+
+    // Test data
+    Int32 CustomerID = 1;
+
+    // Invoke method
+    Found = ACustomer.Find(CustomerID);
+
+    // Check CustomerName property
+    if (ACustomer.CustomerName != "Hajra")
+    {
+        OK = false;
+    }
+
+    // Test result
+    Assert.IsTrue(OK);
+}
+[TestMethod]
+public void TestCustomerEmailFound()
+{
+    // Create an instance of the class
+    Customer ACustomer = new Customer();
+
+    // Create Boolean variables
+    Boolean Found = false;
+    Boolean OK = true;
+
+    // Test data
+    Int32 CustomerID = 1;
+
+    // Invoke method
+    Found = ACustomer.Find(CustomerID);
+
+    // Check CustomerEmail property
+    if (ACustomer.CustomerEmail != "hajra@email.com")
+    {
+        OK = false;
+    }
+
+    // Test result
+    Assert.IsTrue(OK);
+}
+[TestMethod]
+public void TestCustomerPhoneFound()
+{
+    // Create an instance of the class
+    Customer ACustomer = new Customer();
+
+    // Create Boolean variables
+    Boolean Found = false;
+    Boolean OK = true;
+
+    // Test data
+    Int32 CustomerID = 1;
+
+    // Invoke method
+    Found = ACustomer.Find(CustomerID);
+
+    // Check CustomerPhone property
+    if (ACustomer.CustomerPhone != "03001234567")
+    {
+        OK = false;
+    }
+
+    // Test result
+    Assert.IsTrue(OK);
+}
+[TestMethod]
+public void TestCustomerAddressFound()
+{
+    // Create an instance of the class
+    Customer ACustomer = new Customer();
+
+    // Create Boolean variables
+    Boolean Found = false;
+    Boolean OK = true;
+
+    // Test data
+    Int32 CustomerID = 1;
+
+    // Invoke method
+    Found = ACustomer.Find(CustomerID);
+
+    // Check CustomerAddress property
+    if (ACustomer.CustomerAddress != "Faisalabad")
+    {
+        OK = false;
+    }
+
+    // Test result
+    Assert.IsTrue(OK);
+}
+[TestMethod]
+public void TestCustomerPasswordFound()
+{
+    Customer ACustomer = new Customer();
+
+    Boolean Found = false;
+    Boolean OK = true;
+
+    Int32 CustomerID = 1;
+
+    Found = ACustomer.Find(CustomerID);
+
+    if (ACustomer.CustomerPassword != "Password123")
+    {
+        OK = false;
+    }
+
+    Assert.IsTrue(OK);
+}
+[TestMethod]
+public void TestCustomerDateCreatedFound()
+{
+    Customer ACustomer = new Customer();
+
+    Boolean Found = false;
+    Boolean OK = true;
+
+    Int32 CustomerID = 1;
+
+    Found = ACustomer.Find(CustomerID);
+
+    if (ACustomer.CustomerDateCreated != Convert.ToDateTime("01/01/2025"))
+    {
+        OK = false;
+    }
+
+    Assert.IsTrue(OK);
+}
+[TestMethod]
+public void TestCustomerIsActiveFound()
+{
+    Customer ACustomer = new Customer();
+
+    Boolean Found = false;
+    Boolean OK = true;
+
+    Int32 CustomerID = 1;
+
+    Found = ACustomer.Find(CustomerID);
+
+    if (ACustomer.CustomerIsActive != true)
+    {
+        OK = false;
+    }
+
+    Assert.IsTrue(OK);
+}
 
     }
 }
