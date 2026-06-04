@@ -12,8 +12,8 @@
         }
 
         form {
-            width: 500px;
-            margin: 80px auto;
+            width: 1082px;
+            margin: 100px auto;
             background: white;
             padding: 35px;
             border-radius: 12px;
@@ -46,7 +46,11 @@
         <div>
             <h2>VibeConnect Main Menu</h2>
             <asp:Button ID="btnStaff" runat="server" Text="Staff Management" OnClick="btnStaff_Click" />
+            <asp:Button ID="btnInventory" runat="server" Text="Inventory Management" OnClick="btnInventory_Click" />
+            <asp:Button ID="btnOrders" runat="server" Text="Order Management" OnClick="btnOrders_Click" />
+            <asp:Button ID="btnCustomer" runat="server" Text="Customer Management" OnClick="btnCustomer_Click" />
         </div>
+
     </form>
 </body>
 </html>
