@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace VibeConnect
 {
@@ -58,28 +58,27 @@ namespace VibeConnect
         }
 
         public bool FindUser(string UserName, string Password)
-{
-    clsDataConnection DB = new clsDataConnection();
+        {
+            clsDataConnection DB = new clsDataConnection();
 
-    DB.AddParameter("@UserName", UserName);
-    DB.AddParameter("@Password", Password);
+            DB.AddParameter("@UserName", UserName);
+            DB.AddParameter("@Password", Password);
 
-    DB.Execute("sproc_tblUsers_FindUserNamePW");
+            DB.Execute("sproc_tblUsers_FindUserNamePW");
 
-    if (DB.Count == 1)
-    {
-        mUserID = Convert.ToInt32(DB.DataTable.Rows[0]["UserID"]);
-        mUserName = Convert.ToString(DB.DataTable.Rows[0]["UserName"]);
-        mPassword = Convert.ToString(DB.DataTable.Rows[0]["Password"]);
-        mDepartment = Convert.ToString(DB.DataTable.Rows[0]["Department"]);
+            if (DB.Count == 1)
+            {
+                mUserID = Convert.ToInt32(DB.DataTable.Rows[0]["UserID"]);
+                mUserName = Convert.ToString(DB.DataTable.Rows[0]["UserName"]);
+                mPassword = Convert.ToString(DB.DataTable.Rows[0]["Password"]);
+                mDepartment = Convert.ToString(DB.DataTable.Rows[0]["Department"]);
 
-        return true;
-    }
-    else
-    {
-        return false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
-    }
-}
-

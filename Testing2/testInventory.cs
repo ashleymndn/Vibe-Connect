@@ -914,14 +914,13 @@ namespace Testing2
             // create an instance of the class we want to test
             clsInventory AnInventory = new clsInventory();
             // set the properties of the object
-            AnInventory.InventoryId = 1;
-            AnInventory.ProductId = 1;
-            AnInventory.ProductName = "Vphone2";
-            AnInventory.ProductPrice = 9.99m;
-            AnInventory.QuantityInStock = 10;
+            AnInventory.ProductId = 4;
+            AnInventory.ProductName = "Vphone2ProMax";
+            AnInventory.ProductPrice = 265.00m;
+            AnInventory.QuantityInStock = 0;
             AnInventory.LastUpdated = DateTime.Now.Date;
-            AnInventory.StockStatus = "In Stock";
-            AnInventory.Active = true;
+            AnInventory.StockStatus = "Out Of Stock";
+            
             // set ThisInventory to the test object
             AllInventories.ThisInventory = AnInventory;
             // add the record
@@ -958,8 +957,8 @@ namespace Testing2
             TestItem.InventoryId = PrimaryKey;
 
             //modify test record
-            TestItem.ProductName = "Updated Phone";
-            TestItem.ProductPrice = 19.99m;
+            TestItem.ProductName = "Vphone2ProMax";
+            TestItem.ProductPrice = 265.00m;
             TestItem.StockStatus = "Out of Stock";
             TestItem.QuantityInStock = 5;
 

@@ -1,98 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using ClassLibrary;
+using System;
+using System.Data.SqlClient;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using ClassLibrary;
 
-
-
-public partial class _1_DataEntry : System.Web.UI.Page
+public partial class _2InventoryDataEntry : System.Web.UI.Page
 {
     Int32 InventoryId;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        InventoryId = Convert.ToInt32(Session["InventoryId"]);
+        // SAFE SESSION HANDLING
+        if (Session["InventoryId"] != null)
+        {
+            InventoryId = Convert.ToInt32(Session["InventoryId"]);
+        }
+        else
+        {
+            InventoryId = -1;
+        }
 
         if (IsPostBack == false)
         {
-            //if this is not a new record
             if (InventoryId != -1)
             {
-                //display current data
                 DisplayInventory();
             }
         }
     }
 
-    protected void ProductName_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void InventoryId_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void ProductId_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void ProductPrice_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void QuantityInStock_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-
-    protected void LastUpdated_TextChanged(object sender, EventArgs e)
-    {
-
-      
-    }
-
-
-    protected void StockStatus_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void Active_CheckedChanged(object sender, EventArgs e)
-    {
-
-    }
+    protected void ProductName_TextChanged(object sender, EventArgs e) { }
+    protected void InventoryId_TextChanged(object sender, EventArgs e) { }
+    protected void ProductId_TextChanged(object sender, EventArgs e) { }
+    protected void ProductPrice_TextChanged(object sender, EventArgs e) { }
+    protected void QuantityInStock_TextChanged(object sender, EventArgs e) { }
+    protected void LastUpdated_TextChanged(object sender, EventArgs e) { }
+    protected void StockStatus_TextChanged(object sender, EventArgs e) { }
+    protected void Active_CheckedChanged(object sender, EventArgs e) { }
 
     void DisplayInventory()
     {
-        //create instance of inventory class
         clsInventory AnInventory = new clsInventory();
 
-        //find the record to update
-        AnInventory.Find(InventoryId);
+        bool Found = AnInventory.Find(InventoryId);
 
-        //display the data in the controls
-        ProductIdTextBox.Text = AnInventory.ProductId.ToString();
-        ProductNameTextBox.Text = AnInventory.ProductName;
-        ProductPriceTextBox.Text = AnInventory.ProductPrice.ToString();
-        QuantityInStockTextBox.Text = AnInventory.QuantityInStock.ToString();
-        StockStatusTextBox.Text = AnInventory.StockStatus;
-        LastUpdatedTextBox.Text = AnInventory.LastUpdated.ToString();
+        if (Found)
+        {
+            InventoryIdTextBox.Text = AnInventory.InventoryId.ToString();
+            ProductIdTextBox.Text = AnInventory.ProductId.ToString();
+            ProductNameTextBox.Text = AnInventory.ProductName;
+            ProductPriceTextBox.Text = AnInventory.ProductPrice.ToString();
+            QuantityInStockTextBox.Text = AnInventory.QuantityInStock.ToString();
+            StockStatusTextBox.Text = AnInventory.StockStatus;
+            LastUpdatedTextBox.Text = AnInventory.LastUpdated.ToString();
+            chkActive.Checked = AnInventory.Active;
+        }
     }
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
-        //create instance of class
         clsInventory AnInventory = new clsInventory();
 
-        //capture data
         string ProductId = ProductIdTextBox.Text;
         string ProductName = ProductNameTextBox.Text;
         string StockStatus = StockStatusTextBox.Text;
@@ -100,21 +67,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string ProductPrice = ProductPriceTextBox.Text;
         string QuantityInStock = QuantityInStockTextBox.Text;
 
-        //IMPORTANT - capture InventoryId
-        int InventoryId = Convert.ToInt32(InventoryIdTextBox.Text);
-
-        //variable for error messages
         string Error = "";
 
-        //validate
         Error = AnInventory.Valid(ProductId, ProductName,
                                   StockStatus, LastUpdated,
                                   ProductPrice, QuantityInStock);
 
-        //if valid
         if (Error == "")
         {
-            //assign properties
+            // SAFE + CONSISTENT ID HANDLING
+            InventoryId = Convert.ToInt32(InventoryIdTextBox.Text);
+
             AnInventory.InventoryId = InventoryId;
             AnInventory.ProductId = Convert.ToInt32(ProductId);
             AnInventory.ProductName = ProductName;
@@ -124,10 +87,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnInventory.StockStatus = StockStatus;
             AnInventory.Active = chkActive.Checked;
 
-            //create collection object
             clsInventoryCollection InventoryBook = new clsInventoryCollection();
 
-            //new record
             if (InventoryId == -1)
             {
                 InventoryBook.ThisInventory = AnInventory;
@@ -135,35 +96,30 @@ public partial class _1_DataEntry : System.Web.UI.Page
             }
             else
             {
-                //update existing record
                 InventoryBook.ThisInventory.Find(InventoryId);
                 InventoryBook.ThisInventory = AnInventory;
                 InventoryBook.Update();
             }
 
-            //redirect
             Response.Redirect("InventoryList.aspx");
         }
         else
         {
-            //display errors
             lblError.Text = Error;
         }
-
     }
-
-
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
         clsInventory AnInventory = new clsInventory();
-        Int32 InventoryId;
-        Boolean Found = false;
 
-        InventoryId= Convert.ToInt32(InventoryIdTextBox.Text);
-        Found= AnInventory.Find(InventoryId);
-        if (Found == true)
+        int Id = Convert.ToInt32(InventoryIdTextBox.Text);
+
+        bool Found = AnInventory.Find(Id);
+
+        if (Found)
         {
+            InventoryIdTextBox.Text = AnInventory.InventoryId.ToString();
             ProductIdTextBox.Text = AnInventory.ProductId.ToString();
             ProductNameTextBox.Text = AnInventory.ProductName;
             ProductPriceTextBox.Text = AnInventory.ProductPrice.ToString();
@@ -172,13 +128,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
             StockStatusTextBox.Text = AnInventory.StockStatus;
             chkActive.Checked = AnInventory.Active;
         }
-
-
     }
 
-
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void btnMainMenu_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
