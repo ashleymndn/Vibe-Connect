@@ -9,14 +9,26 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:ListBox ID="lstCustomerList" runat="server"></asp:ListBox>
-        <br /><br />
+    <asp:ListBox ID="lstCustomerList" runat="server"></asp:ListBox>
 
-        <asp:Button ID="btnAdd"
-                runat="server"
-                Text="Add"
-                OnClick="btnAdd_Click" />
-    </div>
+    <br /><br />
+
+    <asp:Button ID="btnAdd"
+        runat="server"
+        Text="Add"
+        OnClick="btnAdd_Click" />
+
+    <asp:Button ID="btnEdit"
+        runat="server"
+        Text="Edit"
+        OnClick="btnEdit_Click" />
+
+    <br /><br />
+
+    <asp:Label ID="lblError"
+        runat="server"
+        Text=""></asp:Label>
+</div>
     </form>
 </body>
 </html>

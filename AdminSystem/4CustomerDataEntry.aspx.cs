@@ -8,10 +8,33 @@ using VibeConnect;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 CustomerID;
     protected void Page_Load(object sender, EventArgs e)
-    {
+{
+    CustomerID = Convert.ToInt32(Session["CustomerID"]);
 
+    if (IsPostBack == false)
+    {
+        if (CustomerID != -1)
+        {
+            DisplayCustomer();
+        }
     }
+}
+private void DisplayCustomer()
+{
+    Customer ACustomer = new Customer();
+
+    ACustomer.Find(CustomerID);
+
+    txtCustomerID.Text = ACustomer.CustomerID.ToString();
+    txtCustomerName.Text = ACustomer.CustomerName;
+    txtCustomerEmail.Text = ACustomer.CustomerEmail;
+    txtCustomerPhone.Text = ACustomer.CustomerPhone;
+    txtCustomerAddress.Text = ACustomer.CustomerAddress;
+    txtCustomerPassword.Text = ACustomer.CustomerPassword;
+    chkCustomerIsActive.Checked = ACustomer.CustomerIsActive;
+}
     protected void btnOK_Click(object sender, EventArgs e)
 {
     // Create an instance of the Customer class
@@ -63,8 +86,16 @@ CustomerCollection CustomerBook = new CustomerCollection();
 // Assign the customer to ThisCustomer
 CustomerBook.ThisCustomer = ACustomer;
 
-// Add the record to the database
-CustomerBook.Add();
+// Decide whether to Add or Update
+if (CustomerID == -1)
+{
+    CustomerBook.Add();
+}
+else
+{
+    ACustomer.CustomerID = CustomerID;
+    CustomerBook.Update();
+}
 
 // Return to the list page
 Response.Redirect("4CustomerList.aspx");

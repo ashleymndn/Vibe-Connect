@@ -27,4 +27,21 @@ protected void btnAdd_Click(object sender, EventArgs e)
     Session["CustomerID"] = -1;
     Response.Redirect("4CustomerDataEntry.aspx");
 }
+protected void btnEdit_Click(object sender, EventArgs e)
+{
+    Int32 CustomerID;
+
+    if (lstCustomerList.SelectedIndex != -1)
+    {
+        CustomerID = Convert.ToInt32(lstCustomerList.SelectedValue);
+
+        Session["CustomerID"] = CustomerID;
+
+        Response.Redirect("4CustomerDataEntry.aspx");
+    }
+    else
+    {
+        lblError.Text = "Please select a customer from the list.";
+    }
+}
 }
