@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VibeConnect;
 using System;
 using System.Collections.Generic;
@@ -12,149 +12,128 @@ namespace Testing4
         public void InstanceOK()
         {
             CustomerCollection AllCustomers = new CustomerCollection();
-
             Assert.IsNotNull(AllCustomers);
         }
+
         [TestMethod]
-public void CustomerListOK()
-{
-    CustomerCollection AllCustomers = new CustomerCollection();
+        public void CustomerListOK()
+        {
+            CustomerCollection AllCustomers = new CustomerCollection();
+            List<Customer> TestList = new List<Customer>();
+            AllCustomers.CustomerList = TestList;
+            Assert.AreEqual(AllCustomers.CustomerList, TestList);
+        }
 
-    List<Customer> TestList = new List<Customer>();
+        [TestMethod]
+        public void CountPropertyOK()
+        {
+            CustomerCollection AllCustomers = new CustomerCollection();
+            Assert.IsTrue(AllCustomers.Count > 0);
+        }
 
-    AllCustomers.CustomerList = TestList;
+        [TestMethod]
+        public void ThisCustomerPropertyOK()
+        {
+            CustomerCollection AllCustomers = new CustomerCollection();
+            Customer TestCustomer = new Customer();
+            AllCustomers.ThisCustomer = TestCustomer;
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestCustomer);
+        }
 
-    Assert.AreEqual(AllCustomers.CustomerList, TestList);
-}
-[TestMethod]
-public void CountPropertyOK()
-{
-    CustomerCollection AllCustomers = new CustomerCollection();
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            CustomerCollection AllCustomers = new CustomerCollection();
+            Customer TestItem = new Customer();
+            Int32 PrimaryKey = 0;
 
-    Int32 SomeCount = 0;
+            TestItem.CustomerName = "Test Customer";
+            TestItem.CustomerEmail = "test@email.com";
+            TestItem.CustomerPhone = "03001234567";
+            TestItem.CustomerAddress = "Test Address";
+            TestItem.CustomerPassword = "Password123!";
+            TestItem.CustomerDateCreated = DateTime.Now.Date;
+            TestItem.CustomerIsActive = true;
 
-    Assert.AreEqual(AllCustomers.Count, SomeCount);
-}
-[TestMethod]
-public void ThisCustomerPropertyOK()
-{
-    CustomerCollection AllCustomers = new CustomerCollection();
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
 
-    Customer TestCustomer = new Customer();
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
 
-    AllCustomers.ThisCustomer = TestCustomer;
+            Assert.AreEqual(AllCustomers.ThisCustomer.CustomerName, TestItem.CustomerName);
+        }
 
-    Assert.AreEqual(AllCustomers.ThisCustomer, TestCustomer);
-}
-[TestMethod]
-public void AddMethodOK()
-{
-    CustomerCollection AllCustomers = new CustomerCollection();
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            CustomerCollection AllCustomers = new CustomerCollection();
+            Customer TestItem = new Customer();
+            Int32 PrimaryKey = 0;
 
-    Customer TestItem = new Customer();
+            TestItem.CustomerName = "Test Customer";
+            TestItem.CustomerEmail = "test@email.com";
+            TestItem.CustomerPhone = "03001234567";
+            TestItem.CustomerAddress = "Test Address";
+            TestItem.CustomerPassword = "Password123!";
+            TestItem.CustomerDateCreated = DateTime.Now.Date;
+            TestItem.CustomerIsActive = true;
 
-    Int32 PrimaryKey = 0;
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
 
-    TestItem.CustomerName = "Test Customer";
-    TestItem.CustomerEmail = "test@email.com";
-    TestItem.CustomerPhone = "03001234567";
-    TestItem.CustomerAddress = "Test Address";
-    TestItem.CustomerPassword = "Password123!";
-    TestItem.CustomeDateCreated = DateTime.Now.Date;
-    TestItem.CustomerIsActive = true;
+            TestItem.CustomerName = "Updated Customer";
+            TestItem.CustomerEmail = "updated@email.com";
+            TestItem.CustomerPhone = "03111234567";
+            TestItem.CustomerAddress = "Updated Address";
+            TestItem.CustomerPassword = "UpdatedPassword";
+            TestItem.CustomerDateCreated = DateTime.Now.Date;
+            TestItem.CustomerIsActive = false;
 
-    AllCustomers.ThisCustomer = TestItem;
+            AllCustomers.ThisCustomer = TestItem;
+            AllCustomers.Update();
 
-    PrimaryKey = AllCustomers.Add();
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
 
-    TestItem.CustomerID = PrimaryKey;
+            Assert.AreEqual(AllCustomers.ThisCustomer.CustomerName, TestItem.CustomerName);
+        }
 
-    AllCustomers.ThisCustomer.Find(PrimaryKey);
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            CustomerCollection AllCustomers = new CustomerCollection();
+            Customer TestItem = new Customer();
+            Int32 PrimaryKey = 0;
 
-    Assert.AreEqual(AllCustomers.ThisCustomer.CustomerID, TestItem.CustomerID);
-}
-[TestMethod]
-public void UpdateMethodOK()
-{
-    CustomerCollection AllCustomers = new CustomerCollection();
+            TestItem.CustomerName = "Delete Test";
+            TestItem.CustomerEmail = "delete@test.com";
+            TestItem.CustomerPhone = "03001234567";
+            TestItem.CustomerAddress = "Delete Address";
+            TestItem.CustomerPassword = "Delete123";
+            TestItem.CustomerDateCreated = DateTime.Now.Date;
+            TestItem.CustomerIsActive = true;
 
-    Customer TestItem = new Customer();
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
 
-    Int32 PrimaryKey = 0;
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            AllCustomers.Delete();
 
-    // Original data
-    TestItem.CustomerName = "Test Customer";
-    TestItem.CustomerEmail = "test@email.com";
-    TestItem.CustomerPhone = "03001234567";
-    TestItem.CustomerAddress = "Test Address";
-    TestItem.CustomerPassword = "Password123!";
-    TestItem.CustomeDateCreated = DateTime.Now.Date;
-    TestItem.CustomerIsActive = true;
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
 
-    AllCustomers.ThisCustomer = TestItem;
+        [TestMethod]
+        public void ReportByCustomerNameMethodOK()
+        {
+            CustomerCollection AllCustomers = new CustomerCollection();
+            CustomerCollection FilteredCustomers = new CustomerCollection();
 
-    PrimaryKey = AllCustomers.Add();
+            FilteredCustomers.ReportByCustomerName("");
 
-    TestItem.CustomerID = PrimaryKey;
-
-    // Updated data
-    TestItem.CustomerName = "Updated Customer";
-    TestItem.CustomerEmail = "updated@email.com";
-    TestItem.CustomerPhone = "03111234567";
-    TestItem.CustomerAddress = "Updated Address";
-    TestItem.CustomerPassword = "UpdatedPassword";
-    TestItem.CustomeDateCreated = DateTime.Now.Date;
-    TestItem.CustomerIsActive = false;
-
-    AllCustomers.ThisCustomer = TestItem;
-
-    AllCustomers.Update();
-
-    AllCustomers.ThisCustomer.Find(PrimaryKey);
-
-    Assert.AreEqual(AllCustomers.ThisCustomer.CustomerName, TestItem.CustomerName);
-}
-[TestMethod]
-public void DeleteMethodOK()
-{
-    CustomerCollection AllCustomers = new CustomerCollection();
-
-    Customer TestItem = new Customer();
-
-    Int32 PrimaryKey = 0;
-
-    TestItem.CustomerName = "Delete Test";
-    TestItem.CustomerEmail = "delete@test.com";
-    TestItem.CustomerPhone = "03001234567";
-    TestItem.CustomerAddress = "Delete Address";
-    TestItem.CustomerPassword = "Delete123";
-    TestItem.CustomerDateCreated = DateTime.Now.Date;
-    TestItem.CustomerIsActive = true;
-
-    AllCustomers.ThisCustomer = TestItem;
-
-    PrimaryKey = AllCustomers.Add();
-
-    TestItem.CustomerID = PrimaryKey;
-
-    AllCustomers.ThisCustomer.Find(PrimaryKey);
-
-    AllCustomers.Delete();
-
-    Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
-
-    Assert.IsFalse(Found);
-}
-[TestMethod]
-public void ReportByCustomerNameMethodOK()
-{
-    CustomerCollection AllCustomers = new CustomerCollection();
-
-    CustomerCollection FilteredCustomers = new CustomerCollection();
-
-    FilteredCustomers.ReportByCustomerName("");
-
-    Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
-}
+            Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+        }
     }
 }

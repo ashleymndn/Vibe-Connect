@@ -1,0 +1,107 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace VibeConnect
+{
+    public class CustomerCollection
+    {
+        private List<Customer> mCustomerList = new List<Customer>();
+        private Customer mThisCustomer = new Customer();
+
+        public CustomerCollection()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sproc_tblCustomer_SelectAll");
+            PopulateArray(DB);
+        }
+
+        public List<Customer> CustomerList
+        {
+            get { return mCustomerList; }
+            set { mCustomerList = value; }
+        }
+
+        public int Count
+        {
+            get { return mCustomerList.Count; }
+        }
+
+        public Customer ThisCustomer
+        {
+            get { return mThisCustomer; }
+            set { mThisCustomer = value; }
+        }
+
+        private void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount = DB.Count;
+
+            mCustomerList = new List<Customer>();
+
+            while (Index < RecordCount)
+            {
+                Customer ACustomer = new Customer();
+
+                ACustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
+                ACustomer.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+                ACustomer.CustomerEmail = Convert.ToString(DB.DataTable.Rows[Index]["CustomerEmail"]);
+                ACustomer.CustomerPhone = Convert.ToString(DB.DataTable.Rows[Index]["CustomerPhone"]);
+                ACustomer.CustomerAddress = Convert.ToString(DB.DataTable.Rows[Index]["CustomerAddress"]);
+                ACustomer.CustomerPassword = Convert.ToString(DB.DataTable.Rows[Index]["CustomerPassword"]);
+                ACustomer.CustomerDateCreated = Convert.ToDateTime(DB.DataTable.Rows[Index]["CustomeDateCreated"]);
+                ACustomer.CustomerIsActive = Convert.ToBoolean(DB.DataTable.Rows[Index]["CustomerIsActive"]);
+
+                mCustomerList.Add(ACustomer);
+                Index++;
+            }
+        }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@CustomerName", mThisCustomer.CustomerName);
+            DB.AddParameter("@CustomerEmail", mThisCustomer.CustomerEmail);
+            DB.AddParameter("@CustomerPhone", mThisCustomer.CustomerPhone);
+            DB.AddParameter("@CustomerAddress", mThisCustomer.CustomerAddress);
+            DB.AddParameter("@CustomerPassword", mThisCustomer.CustomerPassword);
+            DB.AddParameter("@CustomeDateCreated", mThisCustomer.CustomerDateCreated);
+            DB.AddParameter("@CustomerIsActive", mThisCustomer.CustomerIsActive);
+
+            return DB.Execute("sproc_tblCustomer_Insert");
+        }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
+            DB.AddParameter("@CustomerName", mThisCustomer.CustomerName);
+            DB.AddParameter("@CustomerEmail", mThisCustomer.CustomerEmail);
+            DB.AddParameter("@CustomerPhone", mThisCustomer.CustomerPhone);
+            DB.AddParameter("@CustomerAddress", mThisCustomer.CustomerAddress);
+            DB.AddParameter("@CustomerPassword", mThisCustomer.CustomerPassword);
+            DB.AddParameter("@CustomeDateCreated", mThisCustomer.CustomerDateCreated);
+            DB.AddParameter("@CustomerIsActive", mThisCustomer.CustomerIsActive);
+
+            DB.Execute("sproc_tblCustomer_Update");
+        }
+        
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
+            DB.Execute("sproc_tblCustomer_Delete");
+        }
+
+        public void ReportByCustomerName(string CustomerName)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerName", CustomerName);
+            DB.Execute("sproc_tblCustomer_FilterByCustomerName");
+            PopulateArray(DB);
+        }
+    }
+}
