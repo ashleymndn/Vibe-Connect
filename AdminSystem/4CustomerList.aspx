@@ -28,6 +28,27 @@
         Text="Delete"
         OnClick="btnDelete_Click" />
 
+    <br /><br />
+
+<asp:Label ID="lblCustomerName"
+    runat="server"
+    Text="Customer Name">
+</asp:Label>
+
+<asp:TextBox ID="txtCustomerNameFilter"
+    runat="server">
+</asp:TextBox>
+
+<asp:Button ID="btnApply"
+    runat="server"
+    Text="Apply Filter"
+    OnClick="btnApply_Click" />
+
+<asp:Button ID="btnClear"
+    runat="server"
+    Text="Clear Filter"
+    OnClick="btnClear_Click" />
+
     
     <br /><br />
 

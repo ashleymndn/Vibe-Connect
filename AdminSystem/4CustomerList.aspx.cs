@@ -12,16 +12,21 @@ public partial class _1_List : System.Web.UI.Page
 {
     if (!IsPostBack)
     {
-        CustomerCollection Customers = new CustomerCollection();
-
-        lstCustomerList.DataSource = Customers.CustomerList;
-        lstCustomerList.DataValueField = "CustomerID";
-        lstCustomerList.DataTextField = "CustomerName";
-        lstCustomerList.DataBind();
+        
+        DisplayCustomers();
     }
-
     
 }
+private void DisplayCustomers()
+{
+    CustomerCollection Customers = new CustomerCollection();
+
+    lstCustomerList.DataSource = Customers.CustomerList;
+    lstCustomerList.DataValueField = "CustomerID";
+    lstCustomerList.DataTextField = "CustomerName";
+    lstCustomerList.DataBind();
+}
+
 protected void btnAdd_Click(object sender, EventArgs e)
 {
     Session["CustomerID"] = -1;
@@ -61,4 +66,22 @@ protected void btnDelete_Click(object sender, EventArgs e)
         lblError.Text = "Please select a customer from the list to delete.";
     }
 }
+protected void btnApply_Click(object sender, EventArgs e)
+{
+    CustomerCollection Customers = new CustomerCollection();
+
+    Customers.ReportByCustomerName(txtCustomerNameFilter.Text);
+
+    lstCustomerList.DataSource = Customers.CustomerList;
+    lstCustomerList.DataValueField = "CustomerID";
+    lstCustomerList.DataTextField = "CustomerName";
+    lstCustomerList.DataBind();
+}
+protected void btnClear_Click(object sender, EventArgs e)
+{
+    txtCustomerNameFilter.Text = "";
+
+    DisplayCustomers();
+}
+
 }

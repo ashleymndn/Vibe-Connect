@@ -111,5 +111,15 @@ public void Delete()
 
     DB.Execute("sproc_tblCustomer_Delete");
 }
+public void ReportByCustomerName(string CustomerName)
+{
+    clsDataConnection DB = new clsDataConnection();
+
+    DB.AddParameter("@CustomerName", CustomerName);
+
+    DB.Execute("sproc_tblCustomer_FilterByCustomerName");
+
+    PopulateArray(DB);
+}
     }
 }

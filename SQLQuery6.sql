@@ -85,3 +85,12 @@ BEGIN
     DELETE FROM tblCustomer
     WHERE CustomerID = @CustomerID
 END
+
+CREATE PROCEDURE sproc_tblCustomer_FilterByCustomerName
+    @CustomerName VARCHAR(50)
+AS
+BEGIN
+    SELECT *
+    FROM tblCustomer
+    WHERE CustomerName LIKE '%' + @CustomerName + '%'
+END

@@ -145,5 +145,16 @@ public void DeleteMethodOK()
 
     Assert.IsFalse(Found);
 }
+[TestMethod]
+public void ReportByCustomerNameMethodOK()
+{
+    CustomerCollection AllCustomers = new CustomerCollection();
+
+    CustomerCollection FilteredCustomers = new CustomerCollection();
+
+    FilteredCustomers.ReportByCustomerName("");
+
+    Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+}
     }
 }
