@@ -73,5 +73,19 @@ namespace VibeConnect
         Index++;
     }
 }
+public int Add()
+{
+    clsDataConnection DB = new clsDataConnection();
+
+    DB.AddParameter("@CustomerName", mThisCustomer.CustomerName);
+    DB.AddParameter("@CustomerEmail", mThisCustomer.CustomerEmail);
+    DB.AddParameter("@CustomerPhone", mThisCustomer.CustomerPhone);
+    DB.AddParameter("@CustomerAddress", mThisCustomer.CustomerAddress);
+    DB.AddParameter("@CustomerPassword", mThisCustomer.CustomerPassword);
+    DB.AddParameter("@CustomeDateCreated", mThisCustomer.CustomerDateCreated);
+    DB.AddParameter("@CustomerIsActive", mThisCustomer.CustomerIsActive);
+
+    return DB.Execute("sproc_tblCustomer_Insert");
+}
     }
 }

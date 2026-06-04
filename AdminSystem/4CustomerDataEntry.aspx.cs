@@ -50,16 +50,24 @@ public partial class _1_DataEntry : System.Web.UI.Page
     if (Error == "")
     {
         ACustomer.CustomerName = CustomerName;
-        ACustomer.CustomerEmail = CustomerEmail;
-        ACustomer.CustomerPhone = CustomerPhone;
-        ACustomer.CustomerAddress = CustomerAddress;
-        ACustomer.CustomerPassword = CustomerPassword;
-        ACustomer.CustomerIsActive = chkCustomerIsActive.Checked;
-        ACustomer.CustomerDateCreated = Convert.ToDateTime(CustomerDateCreated);
+ACustomer.CustomerEmail = CustomerEmail;
+ACustomer.CustomerPhone = CustomerPhone;
+ACustomer.CustomerAddress = CustomerAddress;
+ACustomer.CustomerPassword = CustomerPassword;
+ACustomer.CustomerIsActive = chkCustomerIsActive.Checked;
+ACustomer.CustomerDateCreated = Convert.ToDateTime(CustomerDateCreated);
 
-        Session["ACustomer"] = ACustomer;
+// Create the collection
+CustomerCollection CustomerBook = new CustomerCollection();
 
-        Response.Redirect("4CustomerViewer.aspx");
+// Assign the customer to ThisCustomer
+CustomerBook.ThisCustomer = ACustomer;
+
+// Add the record to the database
+CustomerBook.Add();
+
+// Return to the list page
+Response.Redirect("4CustomerList.aspx");
     }
     else
     {

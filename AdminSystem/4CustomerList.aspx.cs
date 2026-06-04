@@ -19,5 +19,12 @@ public partial class _1_List : System.Web.UI.Page
         lstCustomerList.DataTextField = "CustomerName";
         lstCustomerList.DataBind();
     }
+
+    
+}
+protected void btnAdd_Click(object sender, EventArgs e)
+{
+    Session["CustomerID"] = -1;
+    Response.Redirect("4CustomerDataEntry.aspx");
 }
 }
