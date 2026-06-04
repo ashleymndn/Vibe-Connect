@@ -131,4 +131,8 @@ Response.Redirect("4CustomerList.aspx");
         chkCustomerIsActive.Checked = ACustomer.CustomerIsActive;
     }
 }
+protected void btnMainMenu_Click(object sender, EventArgs e)
+{
+    Response.Redirect("TeamMainMenu.aspx");
+}
 }

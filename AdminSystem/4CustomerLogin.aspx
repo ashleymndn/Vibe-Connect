@@ -38,6 +38,12 @@
                 Text="Login"
                 OnClick="btnLogin_Click" />
 
+            <asp:Button ID="btnCancel"
+                runat="server"
+                Text="Cancel"
+                OnClick="btnCancel_Click" />
+
+
             <br /><br />
 
             <asp:Label ID="lblError"

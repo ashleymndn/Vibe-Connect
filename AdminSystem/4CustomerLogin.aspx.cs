@@ -27,6 +27,7 @@ public partial class _4CustomerLogin : System.Web.UI.Page
             Session["UserID"] = AnUser.UserID;
             Session["UserName"] = AnUser.UserName;
             Session["Department"] = AnUser.Department;
+            Session["AnUser"] = AnUser;
 
             Response.Redirect("4CustomerList.aspx");
         }
@@ -35,4 +36,8 @@ public partial class _4CustomerLogin : System.Web.UI.Page
             lblError.Text = "Login details are incorrect.";
         }
     }
+    protected void btnCancel_Click(object sender, EventArgs e)
+{
+    Response.Redirect("TeamMainMenu.aspx");
+}
 }

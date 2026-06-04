@@ -8,14 +8,18 @@ using VibeConnect;
 
 public partial class _1_List : System.Web.UI.Page
 {
-    protected void Page_Load(object sender, EventArgs e)
+   protected void Page_Load(object sender, EventArgs e)
 {
+    CustomerUser AnUser;
+
+    AnUser = (CustomerUser)Session["AnUser"];
+
+    Response.Write("Logged in as: " + AnUser.UserName);
+
     if (!IsPostBack)
     {
-        
         DisplayCustomers();
     }
-    
 }
 private void DisplayCustomers()
 {
@@ -82,6 +86,10 @@ protected void btnClear_Click(object sender, EventArgs e)
     txtCustomerNameFilter.Text = "";
 
     DisplayCustomers();
+}
+protected void btnMainMenu_Click(object sender, EventArgs e)
+{
+    Response.Redirect("TeamMainMenu.aspx");
 }
 
 }

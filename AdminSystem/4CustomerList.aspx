@@ -28,6 +28,13 @@
         Text="Delete"
         OnClick="btnDelete_Click" />
 
+    <asp:Button ID="btnMainMenu"
+    runat="server"
+    Text="Return to Main Menu"
+    OnClick="btnMainMenu_Click" />
+
+
+
     <br /><br />
 
 <asp:Label ID="lblCustomerName"
