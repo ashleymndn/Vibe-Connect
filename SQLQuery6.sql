@@ -52,3 +52,29 @@ BEGIN
 
     RETURN @@IDENTITY
 END
+
+CREATE PROCEDURE sproc_tblCustomer_Update
+    @CustomerID INT,
+    @CustomerName VARCHAR(50),
+    @CustomerEmail VARCHAR(200),
+    @CustomerPhone VARCHAR(40),
+    @CustomerAddress VARCHAR(300),
+    @CustomerPassword VARCHAR(255),
+    @CustomeDateCreated DATE,
+    @CustomerIsActive BIT
+AS
+BEGIN
+    UPDATE tblCustomer
+    SET
+        CustomerName = @CustomerName,
+        CustomerEmail = @CustomerEmail,
+        CustomerPhone = @CustomerPhone,
+        CustomerAddress = @CustomerAddress,
+        CustomerPassword = @CustomerPassword,
+        CustomeDateCreated = @CustomeDateCreated,
+        CustomerIsActive = @CustomerIsActive
+    WHERE CustomerID = @CustomerID
+END
+
+EXEC sp_helptext 'sproc_tblCustomer_Update'
+

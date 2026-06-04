@@ -87,5 +87,20 @@ public int Add()
 
     return DB.Execute("sproc_tblCustomer_Insert");
 }
+public void Update()
+{
+    clsDataConnection DB = new clsDataConnection();
+
+    DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
+    DB.AddParameter("@CustomerName", mThisCustomer.CustomerName);
+    DB.AddParameter("@CustomerEmail", mThisCustomer.CustomerEmail);
+    DB.AddParameter("@CustomerPhone", mThisCustomer.CustomerPhone);
+    DB.AddParameter("@CustomerAddress", mThisCustomer.CustomerAddress);
+    DB.AddParameter("@CustomerPassword", mThisCustomer.CustomerPassword);
+    DB.AddParameter("@CustomeDateCreated", mThisCustomer.CustomerDateCreated);
+    DB.AddParameter("@CustomerIsActive", mThisCustomer.CustomerIsActive);
+
+    DB.Execute("sproc_tblCustomer_Update");
+}
     }
 }
