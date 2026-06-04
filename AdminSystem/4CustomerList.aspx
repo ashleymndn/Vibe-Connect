@@ -23,6 +23,12 @@
         Text="Edit"
         OnClick="btnEdit_Click" />
 
+    <asp:Button ID="btnDelete"
+        runat="server"
+        Text="Delete"
+        OnClick="btnDelete_Click" />
+
+    
     <br /><br />
 
     <asp:Label ID="lblError"

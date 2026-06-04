@@ -78,3 +78,10 @@ END
 
 EXEC sp_helptext 'sproc_tblCustomer_Update'
 
+CREATE PROCEDURE sproc_tblCustomer_Delete
+    @CustomerID INT
+AS
+BEGIN
+    DELETE FROM tblCustomer
+    WHERE CustomerID = @CustomerID
+END

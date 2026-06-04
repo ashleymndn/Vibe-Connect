@@ -44,4 +44,21 @@ protected void btnEdit_Click(object sender, EventArgs e)
         lblError.Text = "Please select a customer from the list.";
     }
 }
+protected void btnDelete_Click(object sender, EventArgs e)
+{
+    Int32 CustomerID;
+
+    if (lstCustomerList.SelectedIndex != -1)
+    {
+        CustomerID = Convert.ToInt32(lstCustomerList.SelectedValue);
+
+        Session["CustomerID"] = CustomerID;
+
+        Response.Redirect("4CustomerConfirmDelete.aspx");
+    }
+    else
+    {
+        lblError.Text = "Please select a customer from the list to delete.";
+    }
+}
 }

@@ -114,5 +114,36 @@ public void UpdateMethodOK()
 
     Assert.AreEqual(AllCustomers.ThisCustomer.CustomerName, TestItem.CustomerName);
 }
+[TestMethod]
+public void DeleteMethodOK()
+{
+    CustomerCollection AllCustomers = new CustomerCollection();
+
+    Customer TestItem = new Customer();
+
+    Int32 PrimaryKey = 0;
+
+    TestItem.CustomerName = "Delete Test";
+    TestItem.CustomerEmail = "delete@test.com";
+    TestItem.CustomerPhone = "03001234567";
+    TestItem.CustomerAddress = "Delete Address";
+    TestItem.CustomerPassword = "Delete123";
+    TestItem.CustomerDateCreated = DateTime.Now.Date;
+    TestItem.CustomerIsActive = true;
+
+    AllCustomers.ThisCustomer = TestItem;
+
+    PrimaryKey = AllCustomers.Add();
+
+    TestItem.CustomerID = PrimaryKey;
+
+    AllCustomers.ThisCustomer.Find(PrimaryKey);
+
+    AllCustomers.Delete();
+
+    Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+
+    Assert.IsFalse(Found);
+}
     }
 }
