@@ -1,12 +1,35 @@
 ﻿using System;
-using System.Web.UI;
 using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 StfID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        StfID = Convert.ToInt32(Session["StfID"]);
 
+        if (IsPostBack == false)
+        {
+            if (StfID != -1)
+            {
+                DisplayStaff();
+            }
+        }
+    }
+
+    void DisplayStaff()
+    {
+        clsStaffCollection Staff = new clsStaffCollection();
+
+        Staff.ThisStaff.Find(StfID);
+
+        txtStfName.Text = Staff.ThisStaff.StfName;
+        txtStfEmail.Text = Staff.ThisStaff.StfEmail;
+        txtStfRole.Text = Staff.ThisStaff.StfRole;
+        txtStfSalary.Text = Staff.ThisStaff.StfSalary.ToString();
+        txtStfDateJoined.Text = Staff.ThisStaff.StfDateJoined.ToShortDateString();
+        chkStfIsActive.Checked = Staff.ThisStaff.StfIsActive;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -19,17 +42,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string StfSalary = txtStfSalary.Text;
         string StfDateJoined = txtStfDateJoined.Text;
 
-        string Error = "";
-
-        Error = AStaff.Valid(
-                    StfName,
-                    StfEmail,
-                    StfRole,
-                    StfSalary,
-                    StfDateJoined);
+        string Error = AStaff.Valid(
+            StfName,
+            StfEmail,
+            StfRole,
+            StfSalary,
+            StfDateJoined
+        );
 
         if (Error == "")
         {
+            clsStaffCollection Staff = new clsStaffCollection();
+
             AStaff.StfName = StfName;
             AStaff.StfEmail = StfEmail;
             AStaff.StfRole = StfRole;
@@ -37,7 +61,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.StfDateJoined = Convert.ToDateTime(StfDateJoined);
             AStaff.StfIsActive = chkStfIsActive.Checked;
 
-            lblError.Text = "Data entered successfully.";
+            Staff.ThisStaff = AStaff;
+
+            if (StfID == -1)
+            {
+                Staff.Add();
+            }
+            else
+            {
+                AStaff.StfID = StfID;
+                Staff.ThisStaff = AStaff;
+                Staff.Update();
+            }
+
+            Response.Redirect("1StaffList.aspx");
         }
         else
         {
