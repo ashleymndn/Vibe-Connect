@@ -61,7 +61,7 @@ namespace VibeConnect
                 this.CustomerPhone = Convert.ToString(DB.DataTable.Rows[0]["CustomerPhone"]);
                 this.CustomerAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
                 this.CustomerPassword = Convert.ToString(DB.DataTable.Rows[0]["CustomerPassword"]);
-                this.CustomerDateCreated = Convert.ToDateTime(DB.DataTable.Rows[0]["CustomerDateCreated"]);
+                this.CustomerDateCreated = Convert.ToDateTime(DB.DataTable.Rows[0]["CustomeDateCreated"]);
                 this.CustomerIsActive = Convert.ToBoolean(DB.DataTable.Rows[0]["CustomerIsActive"]);
 
                 return true;
