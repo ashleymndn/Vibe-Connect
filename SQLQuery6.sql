@@ -94,3 +94,6 @@ BEGIN
     FROM tblCustomer
     WHERE CustomerName LIKE '%' + @CustomerName + '%'
 END
+
+SELECT *
+FROM tblUsers
