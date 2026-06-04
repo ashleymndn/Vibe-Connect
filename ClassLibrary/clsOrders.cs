@@ -156,14 +156,19 @@ namespace ClassLibrary
             {
                 DateTemp = Convert.ToDateTime(orderDate);
 
+                if (DateTemp < DateComp)
+                {
+                    Error += "The date cannot be in the past : ";
+                }
+
                 if (DateTemp > DateComp)
                 {
-                    Error = Error + "The date cannnot be in the future : ";
+                    Error += "The date cannot be in the future : ";
                 }
             }
             catch
             {
-                Error = Error + "The date was not a valid date : ";
+                Error += "The date was not a valid date : ";
             }
 
             if (total.Length == 0)

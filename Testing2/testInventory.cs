@@ -914,7 +914,6 @@ namespace Testing2
             // create an instance of the class we want to test
             clsInventory AnInventory = new clsInventory();
             // set the properties of the object
-            AnInventory.InventoryId = 5;
             AnInventory.ProductId = 4;
             AnInventory.ProductName = "Vphone2ProMax";
             AnInventory.ProductPrice = 265.00m;
