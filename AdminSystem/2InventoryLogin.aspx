@@ -1,73 +1,85 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="2InventoryLogin.aspx.cs" Inherits="_2InventoryLogin" %>
 
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head runat="server">
     <title>Inventory Login</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            height: 100vh;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 15px;
+        }
+
+        .error-text {
+            color: #ff6b6b;
+            font-weight: 500;
+        }
+    </style>
 </head>
 
-<body style="height: 332px">
-
+<body>
     <form id="form1" runat="server">
 
-        <div>
+        <div class="d-flex justify-content-center align-items-center h-100">
 
-            <asp:Label ID="lblTitle" runat="server"
-                Text="Inventory Login Page"
-                style="z-index:1; left:10px; top:31px; position:absolute; height:38px; width:226px">
-            </asp:Label>
+            <div class="card login-card shadow-lg p-4">
 
-            <asp:Label ID="lblUserName" runat="server"
-                Text="UserName:"
-                style="z-index:1; left:50px; top:113px; position:absolute">
-            </asp:Label>
+                <h3 class="text-center mb-4">Inventory System Login</h3>
 
-            <asp:TextBox ID="txtUserName" runat="server"
-                style="z-index:1; left:196px; top:115px; position:absolute; height:20px; width:145px">
-            </asp:TextBox>
+                <!-- Username -->
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" />
+                </div>
 
-            <asp:Label ID="lblPassword" runat="server"
-                Text="Password:"
-                style="z-index:1; left:50px; top:163px; position:absolute">
-            </asp:Label>
+                <!-- Password -->
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" />
+                </div>
 
-            <asp:TextBox ID="txtPassword" runat="server"
-                TextMode="Password"
-                style="z-index:1; left:195px; top:156px; position:absolute; height:23px; width:143px">
-            </asp:TextBox>
+                <!-- Error Label -->
+                <div class="mb-3 text-center">
+                    <asp:Label ID="lblError" runat="server" CssClass="error-text" />
+                </div>
 
+                <!-- Buttons -->
+                <div class="d-grid gap-2">
 
-            <asp:Label ID="lblError" runat="server"
-                ForeColor="Red"
-                style="z-index:1; left:395px; top:155px; position:absolute">
-            </asp:Label>
+                    <asp:Button 
+                        ID="btnLogin" 
+                        runat="server" 
+                        Text="Login" 
+                        CssClass="btn btn-primary"
+                        OnClick="btnLogin_Click" />
 
-            <asp:Button ID="btnLogin" runat="server"
-                Text="Login"
-                OnClick="btnLogin_Click"
-                style="z-index:1; left:75px; top:236px; position:absolute; height:31px">
-            </asp:Button>
+                    <asp:Button 
+                        ID="btnCancel" 
+                        runat="server" 
+                        Text="Cancel" 
+                        CssClass="btn btn-outline-secondary"
+                        OnClick="btnCancel_Click" />
 
-            <asp:Button ID="btnCancel" runat="server"
-                Text="Cancel"
-                OnClick="btnCancel_Click"
-                style="z-index:1; left:208px; top:234px; position:absolute; height:35px; width:78px">
-            </asp:Button>
-=======
-</p>
-<p>
-    <a href="2InventoryList.aspx">2InventoryList.aspx</a>
-    <asp:Button ID="BtnLogin" runat="server" OnClick="btnLogin_Click" style="z-index: 1; left: 75px; top: 236px; position: absolute; height: 31px" Text="Login" />
-</p>
-<p>
-    <asp:Button ID="BtnCancel" runat="server" OnClick="btnCancel_Click" style="z-index: 1; left: 208px; top: 234px; position: absolute; height: 35px; width: 78px" Text="Cancel" />
-</p>
+                </div>
 
+            </div>
 
         </div>
 
     </form>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

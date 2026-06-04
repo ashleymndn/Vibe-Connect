@@ -6,6 +6,7 @@ namespace ClassLibrary
     public class clsInventory
     {
 
+
         private Int32 mInventoryId;
         private Int32 mProductId;
         private string mProductName;
@@ -285,3 +286,4 @@ namespace ClassLibrary
 
 
  
+
