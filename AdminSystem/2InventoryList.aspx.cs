@@ -44,7 +44,7 @@ public partial class _1_InventoryList : System.Web.UI.Page
 
     protected void btnReturn_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Default.aspx");
+        Response.Redirect("TeamMainMenu.aspx");
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)

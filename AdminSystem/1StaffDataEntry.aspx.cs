@@ -81,4 +81,23 @@ public partial class _1_DataEntry : System.Web.UI.Page
             lblError.Text = Error;
         }
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsStaff AStaff = new clsStaff();
+        Int32 StfID;
+        Boolean Found = false;
+        StfID = Convert.ToInt32(txtStfID.Text);
+        Found = AStaff.Find(StfID);
+        if (Found == true)
+        {
+            txtStfName.Text = AStaff.StfName.ToString();
+            txtStfEmail.Text = AStaff.StfEmail.ToString();
+            txtStfRole.Text = AStaff.StfRole.ToString();
+            txtStfSalary.Text = AStaff.StfSalary.ToString();
+            txtStfDateJoined.Text = AStaff.StfDateJoined.ToString();
+            chkStfIsActive.Checked = AStaff.StfIsActive;
+
+        }
+    }
 }
