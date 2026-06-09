@@ -59,6 +59,10 @@
         <div>
             <h2>Staff Data Entry</h2>
 
+            <asp:Label ID="lblStfId" runat="server" Text="Staff Id"></asp:Label><br />
+            <asp:TextBox ID="txtStfID" runat="server"></asp:TextBox>
+            <br /><br />
+
             <asp:Label ID="lblStfName" runat="server" Text="Staff Name"></asp:Label><br />
             <asp:TextBox ID="txtStfName" runat="server"></asp:TextBox>
             <br /><br />
@@ -84,6 +88,7 @@
 
             <asp:Button ID="btnOK" runat="server" Text="Save Staff" OnClick="btnOK_Click" />
             <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+            <asp:Button ID="btnFind" runat="server" Text="Find" CssClass="btn btn-primary w-100" OnClick="btnFind_Click" />
             <br /><br />
 
             <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
